@@ -1,0 +1,15 @@
+uploads = []
+generated = []
+
+[[outputs]]
+id = "-m-EkQp-lAOXOV1H3S_PY"
+uri = "file://screenshots/fitness-temple-preview.jpg"
+type = "image"
+title = "Fitness Temple — Verified Preview"
+
+[[outputs]]
+id = "-6XjywWFXEsjidsKF8gm1"
+uri = "file://fitness-temple-local.zip"
+type = "unspecified"
+title = "Fitness Temple — Local Code (Download)"
+description = "Complete standalone website code. Run anywhere with Node.js — no Replit needed."

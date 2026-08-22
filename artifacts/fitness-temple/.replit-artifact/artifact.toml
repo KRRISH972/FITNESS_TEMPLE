@@ -1,0 +1,28 @@
+kind = "web"
+previewPath = "/"
+title = "Fitness Temple The Gym"
+description = "A branded gym website for Fitness Temple The Gym in Pundri, Haryana, India. Showcases the gym's programs (CrossFit, Zumba, personal training), gallery, membership plans, trainer information, and a contact form with email delivery. Includes an AI chat assistant for visitor queries."
+version = "1.0.0"
+id = "artifacts/fitness-temple"
+router = "path"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 26022
+
+[services.development]
+run = "pnpm --filter @workspace/fitness-temple run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/fitness-temple", "run", "build" ]
+serve = "static"
+publicDir = "artifacts/fitness-temple/dist/public"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "26022"
+BASE_PATH = "/"
