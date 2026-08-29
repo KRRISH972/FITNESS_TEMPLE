@@ -1,0 +1,27 @@
+# Render.com blueprint — Fitness Temple The Gym (24/7 public link)
+# Use: render.com -> New -> Blueprint -> select this repo
+# On first deploy, set the two secret env vars (GROQ_API_KEY, BREVO_API_KEY).
+
+services:
+  - type: web
+    name: fitness-temple
+    runtime: node
+    plan: free
+    region: oregon
+    autoDeploy: true
+    buildCommand: npm install -g pnpm@11.22.0 && pnpm install --frozen-lockfile && pnpm run build:prod
+    startCommand: node scripts/start-prod.mjs
+    healthCheckPath: /api/healthz
+    envVars:
+      - key: NODE_VERSION
+        value: 24
+      - key: GROQ_MODEL
+        value: llama-3.3-70b-versatile
+      - key: GYM_EMAIL
+        value: krrishai0916@gmail.com
+      - key: GROQ_API_KEY
+        sync: false
+      - key: BREVO_API_KEY
+        sync: false
+      - key: SESSION_SECRET
+        sync: false

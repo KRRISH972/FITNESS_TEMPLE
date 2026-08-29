@@ -3,8 +3,16 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-
+    "dev": "pnpm --filter @workspace/fitness-temple run dev",
+    "dev:api": "pnpm --filter @workspace/api-server run dev",
     "build": "pnpm run typecheck && pnpm -r --if-present run build",
+    "build:prod": "pnpm --filter @workspace/api-server run build && pnpm --filter @workspace/fitness-temple run build",
+    "start": "node scripts/start-prod.mjs",
+    "start:bg": "node scripts/start-pm2.mjs",
+    "stop": "pm2 stop fitness-temple && pm2 save",
+    "restart": "pnpm run build:prod && pm2 restart fitness-temple --update-env",
+    "status": "pm2 status",
+    "logs": "pm2 logs fitness-temple",
     "typecheck:libs": "tsc --build",
     "typecheck": "pnpm run typecheck:libs && pnpm -r --filter \"./artifacts/**\" --filter \"./scripts\" --if-present run typecheck"
   },

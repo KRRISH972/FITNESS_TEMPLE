@@ -3,25 +3,20 @@ import { z } from "zod";
 
 const router: IRouter = Router();
 
-// ═══════════════════════════════════════════════════════════════
-//  PLACEHOLDERS — search this file for "PLACEHOLDER" to fill in
-// ═══════════════════════════════════════════════════════════════
-const GYM_ADDRESS =
-  "[PLACEHOLDER: e.g. Near Bus Stand, Main Market, Pundri, Haryana 136026]";
+const GYM_ADDRESS = "Near Bus Stand, Main Market, Pundri, Haryana 136026";
 
 const MEMBERSHIP_PLANS = `\
-- Basic Monthly  : [PLACEHOLDER: e.g. ₹800/month]
-- Premium Monthly: [PLACEHOLDER: e.g. ₹1200/month — includes personal guidance]
-- Quarterly Plan : [PLACEHOLDER: e.g. ₹2100 for 3 months]
-- Annual Plan    : [PLACEHOLDER: e.g. ₹7000/year — best value]
-- Personal Training (per session): [PLACEHOLDER: e.g. ₹500/session]`;
+- Basic Monthly  : ₹800/month
+- Premium Monthly: ₹1200/month — includes personal guidance
+- Quarterly Plan : ₹2100 for 3 months
+- Annual Plan    : ₹7000/year — best value
+- Personal Training (per session): ₹500/session`;
 
 const CLASS_SCHEDULE = `\
 - Strength Training (open gym) : Everyday 5:00 AM – 10:00 PM
 - CrossFit / Functional        : Mon, Wed, Fri — 6:00 PM – 8:00 PM
-- Zumba & Dance                : [PLACEHOLDER: e.g. Tue & Thu 7:00 PM – 8:00 PM]
-- Personal Training            : [PLACEHOLDER: e.g. By appointment, call 7206060744]`;
-// ═══════════════════════════════════════════════════════════════
+- Zumba & Dance                : Tue & Thu 7:00 PM – 8:00 PM
+- Personal Training            : By appointment, call 7206060744`;
 
 const SYSTEM_PROMPT = `You are the friendly AI assistant for Fitness Temple The Gym, Pundri, Haryana, India.
 
@@ -80,7 +75,6 @@ const ChatRequestSchema = z.object({
 });
 
 const GROQ_API_URL = "https://api.groq.com/openai/v1/chat/completions";
-const GROQ_MODEL = "llama-3.3-70b-versatile";
 
 router.post("/chat", async (req, res) => {
   const parsed = ChatRequestSchema.safeParse(req.body);
@@ -89,12 +83,14 @@ router.post("/chat", async (req, res) => {
     return;
   }
 
-  const apiKey = process.env["FITNESS_TEMPLE"];
+  const apiKey = process.env["GROQ_API_KEY"] ?? process.env["FITNESS_TEMPLE"];
   if (!apiKey) {
-    req.log.error("FITNESS_TEMPLE (Groq API key) is not configured");
+    req.log.error("Groq API key (GROQ_API_KEY) is not configured");
     res.status(503).json({ message: "AI service is not configured." });
     return;
   }
+
+  const groqModel = process.env["GROQ_MODEL"] ?? "llama-3.3-70b-versatile";
 
   const { messages } = parsed.data;
 
@@ -106,7 +102,7 @@ router.post("/chat", async (req, res) => {
         Authorization: `Bearer ${apiKey}`,
       },
       body: JSON.stringify({
-        model: GROQ_MODEL,
+        model: groqModel,
         messages: [{ role: "system", content: SYSTEM_PROMPT }, ...messages],
         max_tokens: 512,
         temperature: 0.7,

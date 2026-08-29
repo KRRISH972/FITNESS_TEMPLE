@@ -188,4 +188,19 @@ pnpm --filter @workspace/db run push                # push Drizzle schema (dev o
 - **Current state:** Site is feature-complete as a static marketing site + AI chat + working contact form. No DB tables yet.
 - **Next steps (candidates):** fill remaining PLACEHOLDERs in `api-server/src/routes/chat.ts`, align membership prices between Membership page and chatbot, unify Groq env var name, define first Drizzle tables if persistence is needed.
 
+### Session 002 — 2026-08-29
+- **Done (local hosting — single command, survives reboot):**
+  - Verified production build (API server + frontend) compiles with no errors.
+  - Started combined server (Express serves API **and** built frontend on one port) via PM2:
+    - `pnpm start:bg` = build + `pm2 startOrRestart ecosystem.config.cjs` (single command for frontend+backend).
+    - Verified: `/` → 200, `/api/healthz` → 200, `/api/chat` → 200 (Groq reply), `/api/contact` → 400 on empty body (validation works).
+  - PM2 autostart on Windows login: `scripts/autostart.bat` copied to Startup folder (`...\Start Menu\Programs\Startup\FitnessTemple-autostart.bat`). Website auto-starts after every reboot/login. No admin needed.
+  - `start-website.bat` / `stop-website.bat` exist for manual start/stop.
+- **Done (24/7 public link — cloud hosting):**
+  - Added `render.yaml` blueprint for Render.com (free plan). Build: `pnpm install --frozen-lockfile && pnpm run build:prod`; Start: `node scripts/start-prod.mjs`; health check `/api/healthz`; unknown env vars `GROQ_API_KEY`, `BREVO_API_KEY`, `SESSION_SECRET` (`sync: false` — user sets them in Render dashboard after deploy).
+  - Repo remote: `https://github.com/KRRISH972/FITNESS_TEMPLE.git` (personal fork). `.env` is git-ignored; `fitness-temple-local.zip` contains only `.env.example` (no secret leak).
+- **Files touched:** `render.yaml` (new), `scripts/autostart.bat` (new), `FITNESS.MD` (this log).
+- **Next steps (user-side):** push `render.yaml` + local-start scripts to GitHub → render.com → New → Blueprint → pick repo → set `GROQ_API_KEY`/`BREVO_API_KEY`/`SESSION_SECRET` → Deploy → gets `https://fitness-temple.onrender.com`.
+- **Gotchas:** Render free plan spins down after 15 min idle (cold start ~30s on first visit). Don't define `PORT` for Render (it injects its own). Local server on port 8080.
+
 <!-- APPEND NEW SESSIONS BELOW THIS LINE -->
