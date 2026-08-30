@@ -6,6 +6,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useToast } from "@/hooks/use-toast";
 import { Reveal } from "@/components/ui/Reveal";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
+import { API_BASE_URL } from "@/lib/api";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -26,7 +27,7 @@ export default function Contact() {
 
   const onSubmit = async (data: ContactFormValues) => {
     try {
-      const response = await fetch("/api/contact", {
+      const response = await fetch(`${API_BASE_URL}/api/contact`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),

@@ -143,6 +143,7 @@ Interest options in contact form: `membership`, `pt`, `crossfit`, `zumba`.
 | `BREVO_API_KEY` | contact routes (both) | transactional email |
 | `GYM_EMAIL`     | vite.config.ts | sender/recipient for contact emails |
 | `SESSION_SECRET`| reserved | already set |
+| `VITE_API_URL`  | frontend (build-time) | Backend base URL. Empty = same-origin (`/api`). Set on Vercel to Render URL (e.g. `https://fitness-temple-api.onrender.com`) |
 
 ⚠️ `artifacts/api-server/src/routes/chat.ts` reads the Groq key from `process.env["FITNESS_TEMPLE"]` — NOT `GROQ_API_KEY`. Must be aligned or the env var must be provided on Replit.
 
@@ -202,5 +203,18 @@ pnpm --filter @workspace/db run push                # push Drizzle schema (dev o
 - **Files touched:** `render.yaml` (new), `scripts/autostart.bat` (new), `FITNESS.MD` (this log).
 - **Next steps (user-side):** push `render.yaml` + local-start scripts to GitHub → render.com → New → Blueprint → pick repo → set `GROQ_API_KEY`/`BREVO_API_KEY`/`SESSION_SECRET` → Deploy → gets `https://fitness-temple.onrender.com`.
 - **Gotchas:** Render free plan spins down after 15 min idle (cold start ~30s on first visit). Don't define `PORT` for Render (it injects its own). Local server on port 8080.
+
+### Session 003 — 2026-08-30
+- **Done (frontend→Vercel + backend→Render split deployment):**
+  - Frontend ab API calls me **env-based base URL** use karta hai: `src/lib/api.ts` exports `API_BASE_URL` = `VITE_API_URL` (build-time) else empty (same-origin). Updated `ChatWidget.tsx` (`/api/chat`) and `Contact.tsx` (`/api/contact`) to prefix `${API_BASE_URL}`.
+  - Added `vercel.json` — Vercel builds only `@workspace/fitness-temple`, output `artifacts/fitness-temple/dist/public`, SPA rewrite to `/index.html`.
+  - Updated `render.yaml` — name `fitness-temple-api`, builds **only** `@workspace/api-server`, start `node --enable-source-maps artifacts/api-server/dist/index.mjs`. Backend no longer builds/serves the frontend (that's Vercel's job now).
+  - Verified: root `pnpm run typecheck` (all workspaces pass) + frontend build with `VITE_API_URL=https://fitness-temple-api.onrender.com` (URL injected into bundle).
+  - Local combined setup (Session 002) unchanged & still works — `VITE_API_URL` empty = same-origin.
+- **Files touched:** `src/lib/api.ts` (new), `ChatWidget.tsx`, `Contact.tsx`, `vercel.json` (new), `render.yaml`, `FITNESS.MD` (this log).
+- **Next steps (user-side):**
+  1. Push to GitHub → **Render** → New Blueprint → set `GROQ_API_KEY`, `BREVO_API_KEY`, `SESSION_SECRET` → gets `https://fitness-temple-api.onrender.com`.
+  2. **Vercel** → Import repo → Framework=Vite → set env `VITE_API_URL=https://fitness-temple-api.onrender.com` → Deploy → gets `https://<project>.vercel.app`.
+  3. Vercel `cors()` is wide-open (`*`), so Vercel→Render calls work without extra config. Render free tier spins down after 15 min idle (~30s cold start).
 
 <!-- APPEND NEW SESSIONS BELOW THIS LINE -->

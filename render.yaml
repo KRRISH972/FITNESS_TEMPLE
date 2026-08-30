@@ -1,16 +1,17 @@
-# Render.com blueprint — Fitness Temple The Gym (24/7 public link)
+# Render.com blueprint — Fitness Temple The Gym BACKEND-ONLY (24/7 public API)
+# Frontend is hosted on Vercel separately.
 # Use: render.com -> New -> Blueprint -> select this repo
-# On first deploy, set the two secret env vars (GROQ_API_KEY, BREVO_API_KEY).
+# On first deploy, set the secret env vars (GROQ_API_KEY, BREVO_API_KEY).
 
 services:
   - type: web
-    name: fitness-temple
+    name: fitness-temple-api
     runtime: node
     plan: free
     region: oregon
     autoDeploy: true
-    buildCommand: npm install -g pnpm@11.22.0 && pnpm install --frozen-lockfile && pnpm run build:prod
-    startCommand: node scripts/start-prod.mjs
+    buildCommand: npm install -g pnpm@11.22.0 && pnpm install --frozen-lockfile && pnpm --filter @workspace/api-server run build
+    startCommand: node --enable-source-maps artifacts/api-server/dist/index.mjs
     healthCheckPath: /api/healthz
     envVars:
       - key: NODE_VERSION

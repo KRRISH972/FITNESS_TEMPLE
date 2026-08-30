@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from "react";
 import { X, Send, Bot, Sparkles } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { Link } from "wouter";
+import { API_BASE_URL } from "@/lib/api";
 
 interface Message {
   role: "user" | "assistant";
@@ -73,7 +74,7 @@ export function ChatWidget() {
     setLoading(true);
 
     try {
-      const res = await fetch("/api/chat", {
+      const res = await fetch(`${API_BASE_URL}/api/chat`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ messages: newMessages }),
