@@ -32,7 +32,7 @@ The site is a dark-themed React SPA with 6 pages, an AI chat widget (Groq API), 
 | Validation | Zod v4, drizzle-zod |
 | API codegen| Orval — generates typed client + Zod schemas from `lib/api-spec/openapi.yaml` into `lib/api-zod` |
 | Email      | Brevo SMTP API (server-side only) |
-| AI Chat    | Groq API — model `llama-3.3-70b-versatile` (api-server route) / `GROQ_MODEL` env for Vite dev middleware |
+| AI Chat    | Groq API — model `openai/gpt-oss-120b` (api-server route) / `GROQ_MODEL` env for Vite dev middleware |
 | Logging    | pino-http |
 
 ---
@@ -83,7 +83,7 @@ FITNESS_TEMPLE/
 │   │       ├── routes/index.ts       ← mounts health, contact, chat routers
 │   │       ├── routes/health.ts      ← GET /api/healthz
 │   │       ├── routes/contact.ts     ← POST /api/contact → validates w/ Zod → Brevo email to GYM_EMAIL
-│   │       ├── routes/chat.ts        ← POST /api/chat → Groq llama-3.3-70b (system prompt has gym info; some PLACEHOLDERs remain!)
+│   │       ├── routes/chat.ts        ← POST /api/chat → Groq openai/gpt-oss-120b (system prompt has gym info; some PLACEHOLDERs remain!)
 │   │       └── lib/logger.ts
 │   │
 │   └── mockup-sandbox/               ← design mockup previewer (@workspace/mockup-sandbox, port 8081, path /__mockup)
@@ -215,6 +215,20 @@ pnpm --filter @workspace/db run push                # push Drizzle schema (dev o
 - **Next steps (user-side):**
   1. Push to GitHub → **Render** → New Blueprint → set `GROQ_API_KEY`, `BREVO_API_KEY`, `SESSION_SECRET` → gets `https://fitness-temple-api.onrender.com`.
   2. **Vercel** → Import repo → Framework=Vite → set env `VITE_API_URL=https://fitness-temple-api.onrender.com` → Deploy → gets `https://<project>.vercel.app`.
-  3. Vercel `cors()` is wide-open (`*`), so Vercel→Render calls work without extra config. Render free tier spins down after 15 min idle (~30s cold start).
+   3. Vercel `cors()` is wide-open (`*`), so Vercel→Render calls work without extra config. Render free tier spins down after 15 min idle (~30s cold start).
+
+### Session 004 — 2026-08-30
+- **Done (backend deployed live on Render + chat model fix):**
+  - Backend **deployed and LIVE** on Render at `https://fitness-temple-api.onrender.com` (Blueprint from repo, `render.yaml`). Env vars set on Render: `GROQ_API_KEY`, `BREVO_API_KEY`, `GROQ_MODEL`, `GYM_EMAIL`, `NODE_VERSION`, `SESSION_SECRET`.
+  - Verified live: `GET /api/healthz` → 200 ✅, `POST /api/contact` → 200 (Brevo email sent) ✅, `POST /api/chat` → 200 (Groq reply) ✅.
+  - **Bug fix:** old Groq model `llama-3.3-70b-versatile` returned `model_not_found` (no longer available/accessible on the account). Changed default to **`openai/gpt-oss-120b`** (valid on the key):
+    - `chat.ts:93` — env `GROQ_MODEL` fallback now `openai/gpt-oss-120b`.
+    - `render.yaml` — `GROQ_MODEL` default value updated to `openai/gpt-oss-120b`.
+    - (vite.config.ts already defaulted to `openai/gpt-oss-120b`.)
+  - Confirmed valid models on this Groq key: `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, `qwen/qwen3.6-27b`, `qwen/qwen3.8-27b`, etc.
+- **Files touched:** `artifacts/api-server/src/routes/chat.ts`, `render.yaml`, `FITNESS.MD` (this log).
+- **Remaining:** **Vercel frontend deploy still not done** — user must import repo on Vercel (Framework=Vite via `vercel.json`, set env `VITE_API_URL=https://fitness-temple-api.onrender.com`, Deploy).
+- **Gotcha:** IF Groq model ever fails again with `model_not_found`, check available models via `GET https://api.groq.com/openai/v1/models` with the key, or bump `GROQ_MODEL` on Render.
+
 
 <!-- APPEND NEW SESSIONS BELOW THIS LINE -->

@@ -17,7 +17,7 @@ services:
       - key: NODE_VERSION
         value: 24
       - key: GROQ_MODEL
-        value: llama-3.3-70b-versatile
+        value: openai/gpt-oss-120b
       - key: GYM_EMAIL
         value: krrishai0916@gmail.com
       - key: GROQ_API_KEY
