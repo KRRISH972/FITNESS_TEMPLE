@@ -227,7 +227,13 @@ pnpm --filter @workspace/db run push                # push Drizzle schema (dev o
     - (vite.config.ts already defaulted to `openai/gpt-oss-120b`.)
   - Confirmed valid models on this Groq key: `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, `qwen/qwen3.6-27b`, `qwen/qwen3.8-27b`, etc.
 - **Files touched:** `artifacts/api-server/src/routes/chat.ts`, `render.yaml`, `FITNESS.MD` (this log).
-- **Remaining:** **Vercel frontend deploy still not done** — user must import repo on Vercel (Framework=Vite via `vercel.json`, set env `VITE_API_URL=https://fitness-temple-api.onrender.com`, Deploy).
+- **Done later same day (frontend LIVE on Vercel):**
+  - Deployed frontend to **Vercel** via CLI: project `kisshu1/fitness-temple`, prod URL **`https://fitness-temple-eight.vercel.app`** (alias), deployment URL `https://fitness-temple-49u5xc8rd-kisshu1.vercel.app`.
+  - Set env `VITE_API_URL=https://fitness-temple-api.onrender.com` (production) on Vercel.
+  - Verified: `GET /` → 200, SPA `/programs` → 200, JS bundle contains `fitness-temple-api.onrender.com`.
+  - GitHub repo auto-connected for future auto-deploys on push.
+- **Files touched (Vercel step):** none in repo (all via Vercel cloud config).
+- **Remaining:** optionally add a custom domain on Vercel; monitor `vercel.json` monorepo build.
 - **Gotcha:** IF Groq model ever fails again with `model_not_found`, check available models via `GET https://api.groq.com/openai/v1/models` with the key, or bump `GROQ_MODEL` on Render.
 
 
