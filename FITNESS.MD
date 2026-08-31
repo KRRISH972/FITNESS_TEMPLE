@@ -236,5 +236,15 @@ pnpm --filter @workspace/db run push                # push Drizzle schema (dev o
 - **Remaining:** optionally add a custom domain on Vercel; monitor `vercel.json` monorepo build.
 - **Gotcha:** IF Groq model ever fails again with `model_not_found`, check available models via `GET https://api.groq.com/openai/v1/models` with the key, or bump `GROQ_MODEL` on Render.
 
+### Session 005 — 2026-08-30
+- **Done (chat widget upgraded — floating + animated + "AI Chat" label):**
+  - `ChatWidget.tsx` — floating trigger button ab **continuous bounce animation** (`chat-bob`) se upar-neeche halka-sa hila raha hai (floating feel).
+  - Added **"AI Chat" label pill** with a Sparkles icon, sitting **above** the chat button — gradient red bg, glowing (`pulse-glow`), always visible (not only on hover).
+  - Enhanced button glow: added a soft blurred `pulse-glow` halo + faster `animate-ping` ring; online green dot now pulses (`scale` repeat animation) for extra life.
+  - `index.css` — added new `@keyframes chat-bob` (gentle 10px up/down bounce for the floating button).
+- **Files touched:** `artifacts/fitness-temple/src/components/ui/ChatWidget.tsx`, `artifacts/fitness-temple/src/index.css`.
+- **Verified:** `pnpm --filter @workspace/fitness-temple run typecheck` + `run build` both pass (built in 43s).
+- **Next step (user-side):** push + Vercel auto-deploys on commit (GitHub repo is connected), or run `npx vercel deploy --prod` manually.
+
 
 <!-- APPEND NEW SESSIONS BELOW THIS LINE -->

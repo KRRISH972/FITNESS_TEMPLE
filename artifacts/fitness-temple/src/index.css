@@ -202,6 +202,10 @@
   0%, 100% { transform: translateY(0px) scale(1); }
   50%       { transform: translateY(-22px) scale(1.04); }
 }
+@keyframes chat-bob {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
 @keyframes float-slow {
   0%, 100% { transform: translateY(0px) rotate(0deg); }
   50%       { transform: translateY(-14px) rotate(6deg); }

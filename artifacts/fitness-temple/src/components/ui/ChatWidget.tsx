@@ -105,13 +105,20 @@ export function ChatWidget() {
       {/* ── Floating trigger button ── */}
       <motion.button
         onClick={() => setOpen((v) => !v)}
-        className="fixed bottom-6 right-4 sm:right-6 z-[9999] group focus:outline-none border-0 p-0 bg-transparent"
-        whileHover={{ scale: 1.08 }}
-        whileTap={{ scale: 0.92 }}
+        className="fixed bottom-8 right-4 sm:right-6 z-[9999] group focus:outline-none border-0 p-0 bg-transparent animate-[chat-bob_3s_ease-in-out_infinite]"
+        whileHover={{ scale: 1.1, transition: { duration: 0.2 } }}
+        whileTap={{ scale: 0.9 }}
         aria-label={open ? "Close chat" : "Open AI chat assistant"}
       >
+        {/* "AI Chat" label above button */}
+        <span className="absolute -top-3 left-1/2 -translate-x-1/2 z-10 pointer-events-none flex items-center gap-1.5 whitespace-nowrap px-3 py-1.5 rounded-full bg-gradient-to-r from-[#E31E24] to-[#7a0d12] border border-[#E31E24]/60 text-white text-[11px] sm:text-xs font-heading font-bold uppercase tracking-wider shadow-[0_0_18px_rgba(227,30,36,0.6)] animate-[pulse-glow_2.5s_ease-in-out_infinite]">
+          <Sparkles className="w-3 h-3" />
+          AI Chat
+        </span>
+
         {/* Outer glow ring */}
-        <span className="absolute inset-0 rounded-full bg-[#E31E24]/20 animate-ping [animation-duration:2.5s]" />
+        <span className="absolute inset-0 rounded-full bg-[#E31E24]/30 animate-ping [animation-duration:2s]" />
+        <span className="absolute inset-0 rounded-full bg-[#E31E24]/20 blur-md animate-[pulse-glow_3s_ease-in-out_infinite]" />
 
         {/* Main button */}
         <span
@@ -162,7 +169,11 @@ export function ChatWidget() {
                   <rect x="19" y="8" width="3" height="8" rx="1" fill="white" opacity="0.9" />
                 </svg>
                 {/* Online dot */}
-                <span className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-400 rounded-full border-2 border-[#E31E24] shadow-[0_0_6px_rgba(52,211,153,0.6)]" />
+                <motion.span
+                  animate={{ scale: [1, 1.3, 1] }}
+                  transition={{ duration: 1.4, repeat: Infinity }}
+                  className="absolute -top-0.5 -right-0.5 w-3.5 h-3.5 bg-emerald-400 rounded-full border-2 border-[#E31E24] shadow-[0_0_6px_rgba(52,211,153,0.6)]"
+                />
               </motion.div>
             )}
           </AnimatePresence>
