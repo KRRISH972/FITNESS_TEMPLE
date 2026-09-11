@@ -244,14 +244,14 @@ export default function Contact() {
       </section>
 
       {/* Map Embed */}
-      <section className="h-[400px] w-full mt-10">
-        <iframe 
-          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27649.387920138972!2d76.5411!3d29.7571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390e0c001c233c09%3A0xc0fb1b635f7eb80a!2sPundri%2C%20Haryana!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin" 
-          width="100%" 
-          height="100%" 
-          style={{ border: 0, filter: "invert(90%) hue-rotate(180deg)" }} 
-          allowFullScreen={false} 
-          loading="lazy" 
+      <section className="h-[400px] w-full mt-10 border-t border-white/10">
+        <iframe
+          src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3465.0!2d76.5411!3d29.7571!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x390e0c001c233c09%3A0xc0fb1b635f7eb80a!2sPundri%2C+Haryana+136026!5e0!3m2!1sen!2sin!4v1700000000000!5m2!1sen!2sin"
+          width="100%"
+          height="100%"
+          style={{ border: 0 }}
+          allowFullScreen={false}
+          loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
           title="Map showing Fitness Temple Gym location in Pundri, Haryana"
         />
