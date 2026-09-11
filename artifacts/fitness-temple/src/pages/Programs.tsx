@@ -3,17 +3,19 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Reveal, StaggerContainer, StaggerItem } from "@/components/ui/Reveal";
 import { Check, Clock, ArrowRight } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
 
-import strengthImg from "@assets/gym_images/eb71bb4d-dd3a-476a-8e7f-a0fb887be971.jpeg";
-import crossfitImg from "@assets/generated_images/fitness-temple-crossfit.jpg";
-import zumbaImg from "@assets/generated_images/fitness-temple-dance.jpg";
-import headerImg from "@assets/gym_images/8e4d3b55-eef9-44b2-a267-80ab668e9556.jpeg";
+import strengthImg from "@assets/gym_images/eb71bb4d-dd3a-476a-8e7f-a0fb887be971.webp";
+import crossfitImg from "@assets/generated_images/fitness-temple-crossfit.webp";
+import zumbaImg from "@assets/generated_images/fitness-temple-dance.webp";
+import headerImg from "@assets/gym_images/8e4d3b55-eef9-44b2-a267-80ab668e9556.webp";
 
 const programs = [
   {
     title: "Strength Training",
     description: "Build muscle, increase raw power, and sculpt your physique with our comprehensive range of free weights and Fitline machines.",
     image: strengthImg,
+    imageAlt: "Strength training equipment and Fitline machines at Fitness Temple Gym Pundri",
     eyebrow: "01 / Foundation",
     features: ["Heavy dumbbells up to 50kg", "Squat racks & Smith machines", "Isolation machines", "Custom lifting platforms"],
     schedule: "Everyday: 5AM - 10PM"
@@ -22,6 +24,7 @@ const programs = [
     title: "CrossFit / Functional",
     description: "High-intensity functional movements designed to improve overall fitness, endurance, and agility. Not for the faint of heart.",
     image: crossfitImg,
+    imageAlt: "CrossFit functional training with kettlebells and battle ropes at Fitness Temple Gym Pundri",
     eyebrow: "02 / Intensity",
     features: ["Kettlebells & Plyo boxes", "Battle ropes", "Tire flips & Sleds", "HIIT circuits"],
     schedule: "Mon/Wed/Fri: 6PM - 8PM"
@@ -30,6 +33,7 @@ const programs = [
     title: "Zumba & Dance",
     description: "Burn calories and have fun. Our dynamic group classes combine energetic music with infectious dance movements.",
     image: zumbaImg,
+    imageAlt: "Zumba and dance group class studio at Fitness Temple Gym Pundri",
     eyebrow: "03 / Rhythm",
     features: ["High energy instructors", "Spacious wooden floor studio", "Surround sound system", "Beginner friendly"],
     schedule: "Tue/Thu/Sat: 6PM - 7PM"
@@ -37,7 +41,8 @@ const programs = [
   {
     title: "Cardio Focus",
     description: "Melt away fat and improve heart health with our dedicated cardio section featuring state-of-the-art treadmills and ellipticals.",
-    image: strengthImg, // reusing for variety or we could leave image out
+    image: strengthImg,
+    imageAlt: "Strength and cardio training area at Fitness Temple Gym Pundri",
     eyebrow: "04 / Endurance",
     features: ["Treadmills with inclines", "Ellipticals & Stairmasters", "Stationary bikes", "Rowing machines"],
     schedule: "Everyday: 5AM - 10PM"
@@ -46,6 +51,7 @@ const programs = [
     title: "Personal Training",
     description: "1-on-1 coaching with Vikas Saini and expert trainers. Get a customized plan tailored exactly to your body type and goals.",
     image: strengthImg,
+    imageAlt: "Personal training session with expert coach at Fitness Temple Gym Pundri",
     eyebrow: "05 / Precision",
     features: ["Customized diet plans", "Form correction", "Accountability & Motivation", "Progress tracking"],
     schedule: "By Appointment"
@@ -53,11 +59,26 @@ const programs = [
 ];
 
 export default function Programs() {
+  useSEO({
+    title: "Gym Programs in Pundri - Strength Training, CrossFit, Zumba & Personal Training | Fitness Temple",
+    description: "Explore our gym programs: Strength Training, CrossFit, Zumba & Dance, Cardio Focus, and Personal Training. Premium Fitline equipment in Pundri, Haryana. Join Fitness Temple today!",
+    keywords: "strength training Pundri, CrossFit classes Pundri, Zumba classes Haryana, gym programs Pundri, personal training Pundri, cardio gym Haryana, Fitline equipment",
+    canonical: "https://fitnesstemple.in/programs",
+    ogTitle: "Gym Programs - Strength Training, CrossFit, Zumba | Fitness Temple",
+    ogDescription: "Explore our gym programs: Strength Training, CrossFit, Zumba & Dance, Cardio Focus, and Personal Training. Premium equipment in Pundri.",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Programs", path: "/programs" },
+    ],
+  });
+
   return (
     <div className="w-full flex flex-col min-h-[100dvh] pt-24 bg-[#0a0a0a]">
       {/* HEADER */}
       <section className="py-20 relative overflow-hidden border-b border-white/10">
-        <div className="absolute inset-0 bg-cover bg-center opacity-10 scale-110 animate-[slowPan_24s_ease-in-out_infinite_alternate]" style={{ backgroundImage: `url(${headerImg})` }} />
+        <div className="absolute inset-0 opacity-10 scale-110 animate-[slowPan_24s_ease-in-out_infinite_alternate]">
+          <img src={headerImg} alt="" aria-hidden="true" className="w-full h-full object-cover" fetchPriority="low" decoding="async" />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] to-transparent" />
         <motion.div
           className="absolute -top-32 left-1/2 h-80 w-80 -translate-x-1/2 rounded-full bg-primary/10 blur-3xl"
@@ -91,7 +112,7 @@ export default function Programs() {
           <div className="space-y-12 md:space-y-24">
             {programs.map((prog, index) => (
               <Reveal key={index} direction={index % 2 === 0 ? "right" : "left"}>
-                <div className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 md:gap-16 items-center`}>
+                <article className={`flex flex-col ${index % 2 === 0 ? 'md:flex-row' : 'md:flex-row-reverse'} gap-8 md:gap-16 items-center`}>
                   
                   {/* Image Side */}
                   <div className="w-full md:w-1/2">
@@ -100,9 +121,12 @@ export default function Programs() {
                       whileHover={{ y: -8 }}
                       transition={{ type: "spring", stiffness: 220, damping: 24 }}
                     >
-                      <motion.div
-                        className="absolute inset-0 bg-cover bg-center"
-                        style={{ backgroundImage: `url(${prog.image})` }}
+                      <motion.img
+                        src={prog.image}
+                        alt={prog.imageAlt}
+                        loading="lazy"
+                        decoding="async"
+                        className="absolute inset-0 w-full h-full object-cover"
                         whileHover={{ scale: 1.1 }}
                         transition={{ duration: 1.1, ease: [0.16, 1, 0.3, 1] }}
                       />
@@ -176,7 +200,7 @@ export default function Programs() {
                     </div>
                   </div>
 
-                </div>
+                </article>
               </Reveal>
             ))}
           </div>

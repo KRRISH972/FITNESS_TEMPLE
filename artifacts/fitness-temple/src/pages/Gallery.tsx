@@ -2,26 +2,40 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Reveal } from "@/components/ui/Reveal";
 import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
 
-import ext1 from "@assets/image_1784655757325.png";
-import ext2 from "@assets/gym_images/2cc21956-08c5-4c98-9a86-81041692833b.jpeg";
-import int1 from "@assets/gym_images/eb71bb4d-dd3a-476a-8e7f-a0fb887be971.jpeg";
-import int2 from "@assets/gym_images/d6b27e32-9b1e-43bb-afb4-64d25134dc64.jpeg";
-import int3 from "@assets/gym_images/8e4d3b55-eef9-44b2-a267-80ab668e9556.jpeg";
-import mem1 from "@assets/Screenshot_20260721-112033_Instagram_1784655451111.jpg";
-import tr1 from "@assets/Screenshot_20260721-112303_Instagram~2_1784655440204.jpg";
+import ext1 from "@assets/image_1784655757325.webp";
+import ext2 from "@assets/gym_images/2cc21956-08c5-4c98-9a86-81041692833b.webp";
+import int1 from "@assets/gym_images/eb71bb4d-dd3a-476a-8e7f-a0fb887be971.webp";
+import int2 from "@assets/gym_images/d6b27e32-9b1e-43bb-afb4-64d25134dc64.webp";
+import int3 from "@assets/gym_images/8e4d3b55-eef9-44b2-a267-80ab668e9556.webp";
+import mem1 from "@assets/Screenshot_20260721-112033_Instagram_1784655451111.webp";
+import tr1 from "@assets/Screenshot_20260721-112303_Instagram~2_1784655440204.webp";
 
 const images = [
-  { src: ext1, alt: "Gym Exterior Night", span: "md:col-span-2 md:row-span-2" },
-  { src: int1, alt: "Fitline Equipment", span: "col-span-1" },
-  { src: int3, alt: "You vs You Mural", span: "col-span-1" },
-  { src: ext2, alt: "Gym Exterior", span: "md:col-span-2" },
-  { src: mem1, alt: "Member Result", span: "col-span-1" },
-  { src: int2, alt: "Interior View", span: "col-span-1" },
-  { src: tr1, alt: "Trainer at work", span: "md:col-span-2" }
+  { src: ext1, alt: "Fitness Temple Gym Pundri - Premium Fitness Center Exterior at Night", span: "md:col-span-2 md:row-span-2" },
+  { src: int1, alt: "Fitness Temple Gym - Premium Fitline Strength Training Equipment in Pundri", span: "col-span-1" },
+  { src: int3, alt: "Fitness Temple Gym - Motivational You vs You Mural Wall Art in Pundri", span: "col-span-1" },
+  { src: ext2, alt: "Fitness Temple Gym - Modern Exterior View of Pundri's Best Fitness Center", span: "md:col-span-2" },
+  { src: mem1, alt: "Fitness Temple Member - Real Transformation Results from Pundri Gym", span: "col-span-1" },
+  { src: int2, alt: "Fitness Temple Gym Interior - Dark Aesthetic Training Floor in Pundri", span: "col-span-1" },
+  { src: tr1, alt: "Vikas Saini - Head Trainer at Fitness Temple Gym Pundri", span: "md:col-span-2" }
 ];
 
 export default function Gallery() {
+  useSEO({
+    title: "Gym Gallery - Interior & Equipment Photos | Fitness Temple Pundri",
+    description: "Take a virtual tour of Fitness Temple Gym in Pundri. See our premium Fitline equipment, dark aesthetic interior, and elite training atmosphere. 500+ sq ft of fitness space.",
+    keywords: "gym interior Pundri, fitness center photos, gym equipment images, Fitline machines, gym gallery Haryana, fitness temple photos",
+    canonical: "https://fitnesstemple.in/gallery",
+    ogTitle: "Gym Gallery - Interior & Equipment | Fitness Temple Pundri",
+    ogDescription: "Take a virtual tour of Fitness Temple Gym. See our premium Fitline equipment, dark aesthetic interior, and elite training atmosphere.",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Gallery", path: "/gallery" },
+    ],
+  });
+
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
 
   const openLightbox = (index: number) => {
@@ -53,9 +67,9 @@ export default function Gallery() {
         <div className="container mx-auto px-4">
           <div className="grid grid-cols-2 md:grid-cols-4 gap-3 md:gap-4 auto-rows-[160px] md:auto-rows-[250px]">
             {images.map((img, i) => (
-              <motion.div
+              <motion.figure
                 key={i}
-                className={`relative overflow-hidden rounded-sm cursor-pointer group ${img.span}`}
+                className={`relative overflow-hidden rounded-sm cursor-pointer group m-0 ${img.span}`}
                 initial={{ opacity: 0, scale: 0.92 }}
                 whileInView={{ opacity: 1, scale: 1 }}
                 viewport={{ once: true, margin: "-40px" }}
@@ -63,9 +77,12 @@ export default function Gallery() {
                 whileHover={{ scale: 1.02 }}
                 onClick={() => openLightbox(i)}
               >
-                <div
-                  className="w-full h-full bg-cover bg-center transition-transform duration-700 group-hover:scale-110"
-                  style={{ backgroundImage: `url(${img.src})` }}
+                <img
+                  src={img.src}
+                  alt={img.alt}
+                  loading="lazy"
+                  decoding="async"
+                  className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-110"
                 />
                 <motion.div
                   className="absolute inset-0 bg-primary/20 flex items-center justify-center"
@@ -82,7 +99,7 @@ export default function Gallery() {
                     <ZoomIn className="w-6 h-6 text-white" />
                   </motion.div>
                 </motion.div>
-              </motion.div>
+              </motion.figure>
             ))}
           </div>
         </div>

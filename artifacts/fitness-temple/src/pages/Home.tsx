@@ -4,21 +4,33 @@ import { motion } from "framer-motion";
 import { ArrowRight, Star, Users, Trophy, ChevronRight, Dumbbell, Quote } from "lucide-react";
 import { Reveal, StaggerContainer, StaggerItem, TextReveal } from "@/components/ui/Reveal";
 import { CountUp } from "@/components/ui/CountUp";
+import { useSEO } from "@/hooks/useSEO";
 
-import heroBg from "@assets/image_1784655757325.png";
-import interiorImg from "@assets/gym_images/eb71bb4d-dd3a-476a-8e7f-a0fb887be971.jpeg";
-import muralImg from "@assets/gym_images/8e4d3b55-eef9-44b2-a267-80ab668e9556.jpeg";
-import trainerImg from "@assets/Screenshot_20260721-111941_Instagram_1784655465460.jpg";
+import heroBg from "@assets/image_1784655757325.webp";
+import interiorImg from "@assets/gym_images/eb71bb4d-dd3a-476a-8e7f-a0fb887be971.webp";
+import muralImg from "@assets/gym_images/8e4d3b55-eef9-44b2-a267-80ab668e9556.webp";
+import trainerImg from "@assets/Screenshot_20260721-111941_Instagram_1784655465460.webp";
 
 export default function Home() {
+  useSEO({
+    title: "Fitness Temple - Best Gym in Pundri, Haryana | Strength Training, CrossFit & Personal Training",
+    description: "Fitness Temple is Pundri's #1 premium gym offering strength training, CrossFit, Zumba, cardio & personal training. Expert coach Vikas Saini with 10+ years experience. Join 500+ happy members!",
+    keywords: "gym in Pundri, fitness center Pundri, CrossFit Pundri, strength training Haryana, personal trainer Pundri, Vikas Saini gym, best gym Haryana, Zumba classes Pundri, weight loss Pundri",
+    canonical: "https://fitnesstemple.in/",
+    ogTitle: "Fitness Temple - Best Gym in Pundri, Haryana",
+    ogDescription: "Pundri's #1 premium gym. Strength training, CrossFit, Zumba & personal training with expert coach Vikas Saini. Join 500+ happy members today!"
+  });
   return (
     <div className="w-full flex flex-col min-h-[100dvh]">
       {/* HERO SECTION */}
       <section className="relative min-h-[100svh] h-screen w-full flex items-center justify-center overflow-hidden">
         {/* Background */}
-        <div
-          className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat scale-105 animate-[slowPan_20s_ease-in-out_infinite_alternate]"
-          style={{ backgroundImage: `url(${heroBg})` }}
+        <img
+          src={heroBg}
+          alt="Fitness Temple Gym Pundri - dark premium interior with professional training area"
+          fetchPriority="high"
+          decoding="async"
+          className="absolute inset-0 z-0 w-full h-full object-cover scale-105 animate-[slowPan_20s_ease-in-out_infinite_alternate]"
         />
         <div className="absolute inset-0 z-10 bg-gradient-to-b from-black/80 via-black/50 to-[#050505]" />
         <div className="absolute inset-0 z-10 bg-black/40" />
@@ -53,7 +65,7 @@ export default function Home() {
             Welcome to the Arena
           </motion.span>
 
-          <div className="font-heading text-[2.65rem] sm:text-6xl md:text-8xl lg:text-9xl font-bold uppercase text-white mb-5 sm:mb-6 leading-[0.92] tracking-tight">
+          <h1 className="font-heading text-[2.65rem] sm:text-6xl md:text-8xl lg:text-9xl font-bold uppercase text-white mb-5 sm:mb-6 leading-[0.92] tracking-tight">
             <TextReveal text="Unleash Your" delay={0.1} stagger={0.1} as="span" className="block" />
             <TextReveal
               text="Inner Power"
@@ -62,7 +74,7 @@ export default function Home() {
               as="span"
               className="block text-transparent bg-clip-text bg-gradient-to-r from-primary via-red-400 to-white drop-shadow-[0_0_15px_rgba(229,57,53,0.8)]"
             />
-          </div>
+          </h1>
 
           <motion.p
             className="text-gray-300 max-w-2xl mx-auto text-base sm:text-lg md:text-xl leading-relaxed mb-7 sm:mb-10 font-light"
@@ -175,13 +187,13 @@ export default function Home() {
 
           <StaggerContainer className="grid grid-cols-1 md:grid-cols-3 gap-6">
             {[
-              { title: "Strength Training", img: interiorImg, desc: "Build raw power with premium free weights and machines." },
-              { title: "CrossFit", img: heroBg, desc: "High-intensity functional training to shatter your limits." },
-              { title: "Zumba & Dance", img: muralImg, desc: "Burn calories and feel the rhythm in our dynamic group classes." }
+              { title: "Strength Training", img: interiorImg, desc: "Build raw power with premium free weights and machines.", alt: "Strength training free weights and Fitline machines at Fitness Temple Gym Pundri" },
+              { title: "CrossFit", img: heroBg, desc: "High-intensity functional training to shatter your limits.", alt: "CrossFit functional training area at Fitness Temple Gym Pundri" },
+              { title: "Zumba & Dance", img: muralImg, desc: "Burn calories and feel the rhythm in our dynamic group classes.", alt: "Motivational You vs You mural wall in the Zumba and dance studio at Fitness Temple Gym" }
             ].map((prog, i) => (
               <StaggerItem key={i}>
                 <Link href="/programs" className="group block relative h-80 overflow-hidden rounded-sm bg-black">
-                  <div className="absolute inset-0 bg-cover bg-center transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40" style={{ backgroundImage: `url(${prog.img})` }} />
+                  <img src={prog.img} alt={prog.alt} loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover transition-transform duration-700 group-hover:scale-110 opacity-60 group-hover:opacity-40" />
                   <div className="absolute inset-0 bg-gradient-to-t from-black via-black/50 to-transparent" />
                   
                   <div className="absolute bottom-0 left-0 p-8 w-full transform transition-transform duration-500 translate-y-4 group-hover:translate-y-0">
@@ -207,12 +219,13 @@ export default function Home() {
       {/* TRAINER PREVIEW */}
       <section className="py-0">
         <div className="flex flex-col md:flex-row">
-          <div className="w-full md:w-1/2 min-h-[300px] md:min-h-[500px] bg-cover bg-top relative" style={{ backgroundImage: `url(${trainerImg})` }}>
+          <div className="w-full md:w-1/2 min-h-[300px] md:min-h-[500px] relative overflow-hidden">
+            <img src={trainerImg} alt="Vikas Saini, head trainer and owner of Fitness Temple Gym Pundri" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover object-top" />
             <div className="absolute inset-0 bg-gradient-to-r from-black/80 md:from-black/0 via-black/40 to-black" />
           </div>
           <div className="w-full md:w-1/2 bg-[#050505] p-6 sm:p-10 md:p-20 flex flex-col justify-center">
             <Reveal direction="left">
-              <h4 className="text-primary font-bold uppercase tracking-[0.2em] mb-2 text-sm">Head Trainer & Owner</h4>
+              <span className="text-primary font-bold uppercase tracking-[0.2em] mb-2 text-sm">Head Trainer & Owner</span>
               <h2 className="font-heading text-3xl sm:text-5xl md:text-7xl font-bold uppercase text-white mb-6">
                 Meet <span className="text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">Vikas Saini</span>
               </h2>
@@ -363,7 +376,7 @@ export default function Home() {
 
       {/* CTA SECTION */}
       <section className="py-16 md:py-32 relative overflow-hidden">
-        <div className="absolute inset-0 bg-cover bg-center opacity-20" style={{ backgroundImage: `url(${muralImg})` }} />
+        <img src={muralImg} alt="" aria-hidden="true" loading="lazy" decoding="async" className="absolute inset-0 w-full h-full object-cover opacity-20" />
         <div className="absolute inset-0 bg-gradient-to-b from-[#0a0a0a] via-black/80 to-[#050505]" />
         
         <div className="container relative z-10 mx-auto px-4 text-center">

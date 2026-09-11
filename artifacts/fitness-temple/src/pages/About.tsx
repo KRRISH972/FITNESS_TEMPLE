@@ -3,17 +3,32 @@ import { motion } from "framer-motion";
 import { Reveal, TextReveal } from "@/components/ui/Reveal";
 import { CountUp } from "@/components/ui/CountUp";
 import { Link } from "wouter";
+import { useSEO } from "@/hooks/useSEO";
 
-import trainerHero from "@assets/Screenshot_20260721-112303_Instagram~2_1784655440204.jpg";
-import trainerFlex from "@assets/Screenshot_20260721-111941_Instagram_1784655465460.jpg";
-import trainerTank from "@assets/Screenshot_20260721-111914_Instagram_1784655475849.jpg";
+import trainerHero from "@assets/Screenshot_20260721-112303_Instagram~2_1784655440204.webp";
+import trainerFlex from "@assets/Screenshot_20260721-111941_Instagram_1784655465460.webp";
+import trainerTank from "@assets/Screenshot_20260721-111914_Instagram_1784655475849.webp";
 
 export default function About() {
+  useSEO({
+    title: "About Vikas Saini - Head Trainer & Owner | Fitness Temple Gym Pundri",
+    description: "Meet Vikas Saini, head trainer and owner of Fitness Temple Gym in Pundri. 10+ years of professional fitness experience. 500+ successful transformations. His philosophy: 'Sweat is just fat crying.'",
+    keywords: "Vikas Saini trainer, gym owner Pundri, personal trainer Haryana, fitness coach Pundri, gym trainer experience, best trainer Haryana",
+    canonical: "https://fitnesstemple.in/about",
+    ogTitle: "About Vikas Saini - Head Trainer | Fitness Temple Gym",
+    ogDescription: "Meet Vikas Saini, head trainer and owner of Fitness Temple Gym in Pundri. 10+ years of professional fitness experience. 500+ successful transformations.",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "About", path: "/about" },
+    ],
+  });
   return (
     <div className="w-full flex flex-col min-h-[100dvh] bg-[#0a0a0a]">
       {/* HERO */}
       <section className="relative h-[55vh] min-h-[380px] w-full flex items-center justify-center border-b border-white/10">
-        <div className="absolute inset-0 bg-cover bg-top" style={{ backgroundImage: `url(${trainerHero})` }} />
+        <div className="absolute inset-0">
+          <img src={trainerHero} alt="Vikas Saini, head trainer of Fitness Temple Gym in Pundri, Haryana" fetchPriority="high" decoding="async" className="w-full h-full object-cover object-top" />
+        </div>
         <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-black/60 to-black/30" />
         
         <div className="container relative z-10 mx-auto px-4 text-center mt-20">
@@ -35,7 +50,7 @@ export default function About() {
             
             <Reveal direction="right">
               <div className="relative">
-                <div className="aspect-[3/4] relative z-10 bg-cover bg-center rounded-sm border-l-4 border-b-4 border-primary shadow-[20px_20px_0px_rgba(229,57,53,0.15)]" style={{ backgroundImage: `url(${trainerFlex})` }} />
+                <img src={trainerFlex} alt="Vikas Saini flexing in the gym - head trainer at Fitness Temple Pundri" loading="lazy" decoding="async" className="aspect-[3/4] w-full h-full object-cover relative z-10 rounded-sm border-l-4 border-b-4 border-primary shadow-[20px_20px_0px_rgba(229,57,53,0.15)]" />
                 {/* Decorative text behind */}
                 <div className="hidden md:block absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 font-heading text-[150px] font-bold text-white/5 whitespace-nowrap z-0">
                   HEAD TRAINER
@@ -62,15 +77,15 @@ export default function About() {
 
                 <div className="grid grid-cols-2 gap-6 pt-6 border-t border-white/10">
                   <motion.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
-                    <h4 className="font-heading text-3xl font-bold text-primary mb-1">
+                    <span className="font-heading text-3xl font-bold text-primary mb-1">
                       <CountUp end={10} suffix="+" duration={2} />
-                    </h4>
+                    </span>
                     <p className="text-xs uppercase tracking-widest text-gray-400">Years Experience</p>
                   </motion.div>
                   <motion.div whileHover={{ x: 4 }} transition={{ type: "spring", stiffness: 300 }}>
-                    <h4 className="font-heading text-3xl font-bold text-primary mb-1">
+                    <span className="font-heading text-3xl font-bold text-primary mb-1">
                       <CountUp end={500} suffix="+" duration={2.2} />
-                    </h4>
+                    </span>
                     <p className="text-xs uppercase tracking-widest text-gray-400">Transformations</p>
                   </motion.div>
                 </div>
@@ -102,7 +117,7 @@ export default function About() {
             </Reveal>
 
             <Reveal direction="left" className="order-1 md:order-2">
-              <div className="aspect-square relative bg-cover bg-center rounded-full overflow-hidden border-4 border-white/5" style={{ backgroundImage: `url(${trainerTank})` }} />
+              <img src={trainerTank} alt="Vikas Saini in tank top - owner and head trainer at Fitness Temple Gym Pundri" loading="lazy" decoding="async" className="aspect-square w-full h-full object-cover rounded-full overflow-hidden border-4 border-white/5" />
             </Reveal>
 
           </div>

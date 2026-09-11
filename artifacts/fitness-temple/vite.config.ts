@@ -2,6 +2,7 @@ import path from 'path';
 import react from '@vitejs/plugin-react';
 import tailwindcss from '@tailwindcss/vite';
 import { defineConfig, loadEnv, type Plugin } from 'vite';
+import viteCompression from 'vite-plugin-compression';
 
 const rawPort = process.env.PORT ?? '5173';
 
@@ -228,6 +229,13 @@ export default defineConfig(({ mode }) => {
       react(),
       tailwindcss(),
       apiPlugin({ GROQ_API_KEY, GROQ_MODEL, BREVO_API_KEY, GYM_EMAIL }),
+      viteCompression({
+        verbose: true,
+        disable: false,
+        threshold: 10240,
+        algorithm: 'gzip',
+        ext: '.gz',
+      }),
     ],
   resolve: {
     alias: {
@@ -245,6 +253,29 @@ export default defineConfig(({ mode }) => {
   build: {
     outDir: path.resolve(import.meta.dirname, 'dist/public'),
     emptyOutDir: true,
+    target: 'es2020',
+    cssTarget: 'safari14',
+    sourcemap: false,
+    cssCodeSplit: true,
+    reportCompressedSize: true,
+    rollupOptions: {
+      output: {
+        manualChunks(id) {
+          if (id.includes('node_modules')) {
+            if (/[\\/]node_modules[\\/](react|react-dom|scheduler)[\\/]/.test(id)) {
+              return 'react-vendor';
+            }
+            if (id.includes('framer-motion') || id.includes('/motion')) {
+              return 'animations';
+            }
+            if (id.includes('lucide-react') || id.includes('react-icons')) {
+              return 'icons';
+            }
+            return 'vendor';
+          }
+        },
+      },
+    },
   },
   server: {
     port,

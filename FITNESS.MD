@@ -247,4 +247,19 @@ pnpm --filter @workspace/db run push                # push Drizzle schema (dev o
 - **Next step (user-side):** push + Vercel auto-deploys on commit (GitHub repo is connected), or run `npx vercel deploy --prod` manually.
 
 
-<!-- APPEND NEW SESSIONS BELOW THIS LINE -->
+### Session 006 — 2026-09-08
+- **Done (on-page SEO overhaul — all 11 points):**
+  1. **Titles/Meta descriptions** — already per-page via `useSEO`; verified each page (Home, Programs, About, Gallery, Membership, Contact).
+  2. **Heading hierarchy** — Home hero was a `<div>` (no h1) → now real `<h1>`; Home `h4` eyebrow → `<span>`; About stat `h4` → `<span>`; Membership plan titles + PT `h3` → `h2`; Programs cards wrapped in `<article>`; 404 now dark-themed + `noindex`.
+  3. **Clean URLs** — already clean (`/`, `/programs`, `/about`, `/gallery`, `/membership`, `/contact`) via wouter + vercel SPA rewrite.
+  4. **Internal linking** — Footer "Programs" column converted from plain text to links to `/programs`; footer contact info now `<address>` with `tel:`/`mailto:` links.
+  5. **Alt text** — converted CSS-`background-image` divs to real `<img>` tags with descriptive alt across Home (hero, program teasers, trainer, CTA), Programs (all 5 program cards + header), About (3 trainer images), Gallery grid (all 7 images, now `<figure>`). Decorative images get `alt=""` + `aria-hidden`.
+  6. **Semantic tags** — `<header>`, `<main>`, `<section>`, `<article>`, `<figure>`, `<address>`, `<nav>`, `<footer>` in place; not-found dark-themed.
+  7. **JSON-LD** — index.html upgraded to `@graph` with `WebSite` + `HealthClub` (founder, full address incl. postal 136026, departments), plus `FAQPage` (5 Q&As); per-page `BreadcrumbList` injected dynamically via `useSEO`.
+  8. **Robots.txt** — polished (explicit disallows, sitemap ref).
+  9. **Sitemap.xml** — rebuilt with updated `lastmod` 2026-09-08 + prioritized URLs.
+  10. **Speed** — `fetchPriority="high"` on hero/About hero, `loading="lazy"` + `decoding="async"` on all below-fold images; already had gzip, manualChunks, code-split lazy routes.
+  11. **Meta polish** — absolute `og:image`/`twitter:image` URLs; `useSEO` now supports `robots`, `og:url`, and `breadcrumbs`.
+- **Files touched:** `index.html`, `src/hooks/useSEO.ts`, `src/pages/{Home,Programs,About,Membership,Contact,not-found}.tsx`, `src/pages/Gallery.tsx`, `src/components/layout/Footer.tsx`, `public/robots.txt`, `public/sitemap.xml`, `FITNESS.MD`.
+- **Verified:** `pnpm --filter @workspace/fitness-temple run typecheck` ✅ and `run build` ✅ (built in ~28s).
+- **Gotcha:** SPA is client-rendered — per-page title/meta only visible to JS-capable crawlers (Google renders JS, so OK). SSR/prerender would be the next-level improvement.

@@ -7,6 +7,7 @@ import { useToast } from "@/hooks/use-toast";
 import { Reveal } from "@/components/ui/Reveal";
 import { MapPin, Phone, Mail, Clock, Send } from "lucide-react";
 import { API_BASE_URL } from "@/lib/api";
+import { useSEO } from "@/hooks/useSEO";
 
 const contactSchema = z.object({
   name: z.string().min(2, "Name must be at least 2 characters"),
@@ -19,6 +20,19 @@ const contactSchema = z.object({
 type ContactFormValues = z.infer<typeof contactSchema>;
 
 export default function Contact() {
+  useSEO({
+    title: "Contact Us - Location, Phone & Hours | Fitness Temple Gym Pundri",
+    description: "Contact Fitness Temple Gym in Pundri, Haryana. Phone: 7206060744. Address: Pundri, Haryana. Open Mon-Sat 5AM-10PM. Join our fitness community today!",
+    keywords: "contact gym Pundri, gym phone number, gym location Pundri, fitness temple address, gym hours Pundri, gym contact Haryana",
+    canonical: "https://fitnesstemple.in/contact",
+    ogTitle: "Contact Fitness Temple Gym - Location, Phone & Hours",
+    ogDescription: "Contact Fitness Temple Gym in Pundri. Phone: 7206060744. Open Mon-Sat 5AM-10PM. Join our fitness community today!",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Contact", path: "/contact" },
+    ],
+  });
+
   const { toast } = useToast();
   
   const { register, handleSubmit, formState: { errors, isSubmitting }, reset } = useForm<ContactFormValues>({
@@ -75,24 +89,24 @@ export default function Contact() {
                   <h3 className="font-heading text-3xl font-bold uppercase text-white mb-6 border-b border-white/10 pb-4">
                     Contact Details
                   </h3>
-                  <div className="space-y-6">
+                  <address className="not-italic space-y-6">
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">
                         <MapPin className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <h4 className="font-heading uppercase tracking-widest text-white mb-1">Location</h4>
-                        <p className="text-gray-400">Pundri, Haryana<br />India</p>
+                        <p className="font-heading uppercase tracking-widest text-white mb-1">Location</p>
+                        <p className="text-gray-400">Near Bus Stand, Main Market, Pundri, Haryana 136026, India</p>
                       </div>
                     </div>
-                    
+
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">
                         <Phone className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <h4 className="font-heading uppercase tracking-widest text-white mb-1">Phone</h4>
-                        <p className="text-gray-400 text-lg">7206060744</p>
+                        <p className="font-heading uppercase tracking-widest text-white mb-1">Phone</p>
+                        <a href="tel:+917206060744" className="text-gray-400 text-lg hover:text-primary transition-colors">7206060744</a>
                       </div>
                     </div>
 
@@ -101,11 +115,11 @@ export default function Contact() {
                         <Mail className="w-6 h-6 text-primary" />
                       </div>
                       <div>
-                        <h4 className="font-heading uppercase tracking-widest text-white mb-1">Email</h4>
-                        <p className="text-gray-400 break-all">krrishai0916@gmail.com</p>
+                        <p className="font-heading uppercase tracking-widest text-white mb-1">Email</p>
+                        <a href="mailto:krrishai0916@gmail.com" className="text-gray-400 break-all hover:text-primary transition-colors">krrishai0916@gmail.com</a>
                       </div>
                     </div>
-                  </div>
+                  </address>
                 </div>
 
                 <div>
@@ -117,11 +131,11 @@ export default function Contact() {
                       <Clock className="w-6 h-6 text-white" />
                     </div>
                     <div>
-                      <div className="flex justify-between w-48 mb-2">
+                      <div className="flex justify-between w-48 max-w-full mb-2">
                         <span className="text-gray-400">Mon - Sat</span>
                         <span className="text-white font-medium">5:00 AM - 10:00 PM</span>
                       </div>
-                      <div className="flex justify-between w-48">
+                      <div className="flex justify-between w-48 max-w-full">
                         <span className="text-gray-400">Sunday</span>
                         <span className="text-primary font-medium">Closed</span>
                       </div>

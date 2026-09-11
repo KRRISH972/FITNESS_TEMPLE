@@ -3,6 +3,7 @@ import { Link } from "wouter";
 import { motion } from "framer-motion";
 import { Reveal, StaggerContainer, StaggerItem } from "@/components/ui/Reveal";
 import { Check, Dumbbell } from "lucide-react";
+import { useSEO } from "@/hooks/useSEO";
 
 const plans = [
   {
@@ -51,6 +52,19 @@ const plans = [
 ];
 
 export default function Membership() {
+  useSEO({
+    title: "Gym Membership Plans & Pricing - ₹1,500/month | Fitness Temple Pundri",
+    description: "Affordable gym membership plans in Pundri. Monthly ₹1,500, Quarterly ₹4,000, Annual ₹12,000. No hidden fees. Personal training available. Join Fitness Temple today!",
+    keywords: "gym membership Pundri, gym price Pundri, monthly gym plan Haryana, quarterly gym membership, annual gym pass, fitness temple membership, gym cost Pundri",
+    canonical: "https://fitnesstemple.in/membership",
+    ogTitle: "Gym Membership Plans - ₹1,500/month | Fitness Temple Pundri",
+    ogDescription: "Affordable gym membership plans in Pundri. Monthly ₹1,500, Quarterly ₹4,000, Annual ₹12,000. No hidden fees. Join Fitness Temple today!",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+      { name: "Membership", path: "/membership" },
+    ],
+  });
+
   return (
     <div className="w-full flex flex-col min-h-[100dvh] pt-24 bg-[#0a0a0a]">
       <section className="py-12 md:py-20">
@@ -79,7 +93,7 @@ export default function Membership() {
                 )}
 
                 <div className="mb-8">
-                  <h3 className="font-heading text-3xl font-bold text-white mb-2 uppercase">{plan.name}</h3>
+                  <h2 className="font-heading text-3xl font-bold text-white mb-2 uppercase">{plan.name}</h2>
                   <p className="text-gray-400 text-sm min-h-[40px]">{plan.description}</p>
                 </div>
 
@@ -118,7 +132,7 @@ export default function Membership() {
                   <Dumbbell className="w-8 h-8 text-primary" />
                 </div>
                 <div>
-                  <h3 className="font-heading text-3xl font-bold uppercase text-white mb-2">Personal Training</h3>
+                  <h2 className="font-heading text-3xl font-bold uppercase text-white mb-2">Personal Training</h2>
                   <p className="text-gray-400">Want faster results? Add 1-on-1 coaching with Vikas Saini.</p>
                 </div>
               </div>

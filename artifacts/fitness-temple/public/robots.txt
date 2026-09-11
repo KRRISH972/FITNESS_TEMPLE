@@ -1,2 +1,9 @@
 User-agent: *
 Allow: /
+Disallow: /api/
+
+# Block search indexing of internal/dev routes
+Disallow: /__mockup
+
+# Sitemaps
+Sitemap: https://fitnesstemple.in/sitemap.xml

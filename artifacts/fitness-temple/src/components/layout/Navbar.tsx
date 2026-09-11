@@ -3,7 +3,7 @@ import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 import { AnimatePresence, motion } from "framer-motion";
 import { cn } from "@/lib/utils";
-import logoImg from "@assets/image_1784656770555.png";
+import logoImg from "@assets/image_1784656770555.webp";
 
 export function Navbar() {
   const [location] = useLocation();
@@ -19,12 +19,12 @@ export function Navbar() {
   }, []);
 
   const navLinks = [
-    { name: "Home", path: "/" },
-    { name: "Programs", path: "/programs" },
-    { name: "About & Trainer", path: "/about" },
-    { name: "Gallery", path: "/gallery" },
-    { name: "Membership", path: "/membership" },
-    { name: "Contact", path: "/contact" },
+    { name: "Home", path: "/", ariaLabel: "Home - Fitness Temple Gym Pundri" },
+    { name: "Programs", path: "/programs", ariaLabel: "Gym Programs - Strength Training, CrossFit, Zumba" },
+    { name: "About & Trainer", path: "/about", ariaLabel: "About Vikas Saini - Head Trainer" },
+    { name: "Gallery", path: "/gallery", ariaLabel: "Gym Gallery - Photos and Interior" },
+    { name: "Membership", path: "/membership", ariaLabel: "Gym Membership Plans and Pricing" },
+    { name: "Contact", path: "/contact", ariaLabel: "Contact Fitness Temple Gym" },
   ];
 
   return (
@@ -70,6 +70,7 @@ export function Navbar() {
             >
               <Link
                 href={link.path}
+                aria-label={link.ariaLabel}
                 className={cn(
                   "text-sm font-semibold uppercase tracking-widest transition-colors hover:text-primary relative group py-2",
                   location === link.path ? "text-primary" : "text-gray-300"
@@ -133,6 +134,7 @@ export function Navbar() {
                   <Link
                     href={link.path}
                     onClick={() => setMobileMenuOpen(false)}
+                    aria-label={link.ariaLabel}
                     className={cn(
                        "block text-lg font-heading tracking-wider py-3 border-b border-white/5",
                       location === link.path ? "text-primary" : "text-gray-300"

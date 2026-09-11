@@ -3,8 +3,29 @@ import { Toaster } from '@/components/ui/toaster';
 import { TooltipProvider } from '@/components/ui/tooltip';
 import NotFound from '@/pages/not-found';
 import { Route, Switch, Router as WouterRouter, useLocation } from 'wouter';
-import { useEffect } from 'react';
+import { lazy, Suspense, useEffect } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
+
+// Layout & Components
+import { Navbar } from '@/components/layout/Navbar';
+import { Footer } from '@/components/layout/Footer';
+import { ChatWidget } from '@/components/ui/ChatWidget';
+
+// Pages - code split for faster initial load
+const Home = lazy(() => import('@/pages/Home'));
+const Programs = lazy(() => import('@/pages/Programs'));
+const About = lazy(() => import('@/pages/About'));
+const Gallery = lazy(() => import('@/pages/Gallery'));
+const Membership = lazy(() => import('@/pages/Membership'));
+const Contact = lazy(() => import('@/pages/Contact'));
+
+function PageLoader() {
+  return (
+    <div className="flex items-center justify-center min-h-[60vh]">
+      <div className="w-10 h-10 border-2 border-primary/30 border-t-primary rounded-full animate-spin" />
+    </div>
+  );
+}
 
 function ScrollToTop() {
   const [location] = useLocation();
@@ -13,19 +34,6 @@ function ScrollToTop() {
   }, [location]);
   return null;
 }
-
-// Layout & Components
-import { Navbar } from '@/components/layout/Navbar';
-import { Footer } from '@/components/layout/Footer';
-import { ChatWidget } from '@/components/ui/ChatWidget';
-
-// Pages
-import Home from '@/pages/Home';
-import Programs from '@/pages/Programs';
-import About from '@/pages/About';
-import Gallery from '@/pages/Gallery';
-import Membership from '@/pages/Membership';
-import Contact from '@/pages/Contact';
 
 const queryClient = new QueryClient();
 
@@ -56,12 +64,12 @@ function Router() {
           transition={{ duration: 0.45, ease: [0.16, 1, 0.3, 1] as [number, number, number, number] }}
         >
           <Switch>
-            <Route path="/" component={Home} />
-            <Route path="/programs" component={Programs} />
-            <Route path="/about" component={About} />
-            <Route path="/gallery" component={Gallery} />
-            <Route path="/membership" component={Membership} />
-            <Route path="/contact" component={Contact} />
+            <Route path="/" component={() => <Suspense fallback={<PageLoader />}><Home /></Suspense>} />
+            <Route path="/programs" component={() => <Suspense fallback={<PageLoader />}><Programs /></Suspense>} />
+            <Route path="/about" component={() => <Suspense fallback={<PageLoader />}><About /></Suspense>} />
+            <Route path="/gallery" component={() => <Suspense fallback={<PageLoader />}><Gallery /></Suspense>} />
+            <Route path="/membership" component={() => <Suspense fallback={<PageLoader />}><Membership /></Suspense>} />
+            <Route path="/contact" component={() => <Suspense fallback={<PageLoader />}><Contact /></Suspense>} />
             <Route component={NotFound} />
           </Switch>
         </motion.div>
