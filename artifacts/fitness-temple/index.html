@@ -10,8 +10,8 @@
     <meta name="mobile-web-app-capable" content="yes" />
     
     <!-- Primary SEO Meta Tags -->
-    <title>Fitness Temple - Best Gym in Pundri, Haryana | Strength Training, CrossFit & Personal Training</title>
-    <meta name="description" content="Fitness Temple is Pundri's #1 premium gym offering strength training, CrossFit, Zumba, cardio & personal training. Expert coach Vikas Saini with 10+ years experience. Join 500+ happy members today!" />
+    <title>Fitness Temple - Best Gym in Pundri, Haryana</title>
+    <meta name="description" content="Pundri's #1 gym for strength training, CrossFit, Zumba & personal training. Expert coach Vikas Saini. 500+ happy members. Join Fitness Temple today!" />
     <meta name="keywords" content="gym in Pundri, fitness center Pundri, CrossFit Pundri, strength training Haryana, personal trainer Pundri, Vikas Saini gym, best gym Haryana, Zumba classes Pundri, weight loss Pundri, fitness temple" />
     <meta name="author" content="Vikas Saini" />
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
@@ -20,22 +20,24 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website" />
     <meta property="og:url" content="https://fitnesstemple.in/" />
-    <meta property="og:title" content="Fitness Temple - Best Gym in Pundri, Haryana | Strength Training & CrossFit" />
-    <meta property="og:description" content="Pundri's #1 premium gym. Strength training, CrossFit, Zumba & personal training with expert coach Vikas Saini. 500+ happy members. Join the Temple today!" />
+    <meta property="og:title" content="Fitness Temple - Best Gym in Pundri, Haryana" />
+    <meta property="og:description" content="Pundri's #1 gym. Strength training, CrossFit, Zumba & personal training with expert coach Vikas Saini. Join 500+ happy members today!" />
     <meta property="og:image" content="https://fitnesstemple.in/og-image.png" />
+    <meta property="og:image:type" content="image/png" />
     <meta property="og:image:width" content="1254" />
     <meta property="og:image:height" content="1254" />
     <meta property="og:image:alt" content="Fitness Temple Gym Pundri - Premium Fitness Center" />
     <meta property="og:site_name" content="Fitness Temple" />
     <meta property="og:locale" content="en_IN" />
+    <meta property="og:locale:alternate" content="hi_IN" />
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:url" content="https://fitnesstemple.in/" />
     <meta name="twitter:title" content="Fitness Temple - Best Gym in Pundri, Haryana" />
-    <meta name="twitter:description" content="Pundri's #1 premium gym. Strength training, CrossFit, Zumba & personal training. Expert coach Vikas Saini." />
+    <meta name="twitter:description" content="Pundri's #1 gym. Strength training, CrossFit, Zumba & personal training. Expert coach Vikas Saini." />
     <meta name="twitter:image" content="https://fitnesstemple.in/og-image.png" />
-    <meta name="twitter:image:alt" content="Fitness Temple Gym Pundri" />
+    <meta name="twitter:image:alt" content="Fitness Temple Gym Pundri - Premium Fitness Center" />
     
     <!-- Geo Meta Tags for Local SEO -->
     <meta name="geo.region" content="IN-HR" />
@@ -49,10 +51,10 @@
     <link rel="apple-touch-icon" href="/og-image.png" />
     <meta name="theme-color" content="#e53935" />
     
-    <!-- Preconnect for Performance -->
+    <!-- Preconnect + Preload for Performance -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="preload" as="image" href="/og-image.png" />
     
     <!-- JSON-LD Structured Data -->
     <script type="application/ld+json">
@@ -74,6 +76,7 @@
           "@id": "https://fitnesstemple.in/#organization",
           "name": "Fitness Temple",
           "alternateName": "Fitness Temple Gym",
+          "slogan": "Unleash Your Inner Power",
           "description": "Premium gym in Pundri, Haryana offering strength training, CrossFit, Zumba, cardio & personal training with expert coach Vikas Saini.",
           "url": "https://fitnesstemple.in",
           "telephone": "+917206060744",
@@ -96,6 +99,10 @@
             "latitude": 29.7571,
             "longitude": 76.5411
           },
+          "areaServed": [
+            { "@type": "City", "name": "Pundri" },
+            { "@type": "AdministrativeArea", "name": "Haryana" }
+          ],
           "image": "https://fitnesstemple.in/og-image.png",
           "logo": "https://fitnesstemple.in/favicon.png",
           "priceRange": "₹₹",
@@ -116,39 +123,35 @@
             "bestRating": "5",
             "worstRating": "1"
           },
-          "hasOfferCatalog": {
-            "@type": "OfferCatalog",
-            "name": "Gym Membership Plans",
-            "itemListElement": [
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Monthly Membership"
-                },
+          "makesOffer": [
+            {
+              "@type": "Offer",
+              "name": "Monthly Membership",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
                 "price": "1500",
                 "priceCurrency": "INR"
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Quarterly Membership"
-                },
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Quarterly Membership",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
                 "price": "4000",
                 "priceCurrency": "INR"
-              },
-              {
-                "@type": "Offer",
-                "itemOffered": {
-                  "@type": "Service",
-                  "name": "Annual Membership"
-                },
+              }
+            },
+            {
+              "@type": "Offer",
+              "name": "Annual Membership",
+              "priceSpecification": {
+                "@type": "PriceSpecification",
                 "price": "12000",
                 "priceCurrency": "INR"
               }
-            ]
-          },
+            }
+          ],
           "department": [
             {
               "@type": "Service",
@@ -171,54 +174,6 @@
               "description": "1-on-1 coaching with Vikas Saini including custom program and diet plan."
             }
           ]
-        }
-      ]
-    }
-    </script>
-    <script type="application/ld+json">
-    {
-      "@context": "https://schema.org",
-      "@type": "FAQPage",
-      "mainEntity": [
-        {
-          "@type": "Question",
-          "name": "Where is Fitness Temple Gym located?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Fitness Temple is located near the Bus Stand, Main Market, Pundri, Haryana 136026, India."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What are Fitness Temple's opening hours?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Fitness Temple is open Monday to Saturday from 5:00 AM to 10:00 PM. It is closed on Sundays."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What is the gym membership price at Fitness Temple?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Monthly membership is ₹1,500, quarterly is ₹4,000, and annual is ₹12,000 which includes a free T-shirt, guest passes and a diet plan."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "What programs does Fitness Temple Pundri offer?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Fitness Temple offers Strength Training, CrossFit / Functional Training, Zumba & Dance classes, Cardio and Personal Training with head trainer Vikas Saini."
-          }
-        },
-        {
-          "@type": "Question",
-          "name": "How do I contact Fitness Temple Gym?",
-          "acceptedAnswer": {
-            "@type": "Answer",
-            "text": "Call 7206060744, email krrishai0916@gmail.com, or use the contact form on the website."
-          }
         }
       ]
     }

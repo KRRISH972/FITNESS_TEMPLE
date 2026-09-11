@@ -1,7 +1,7 @@
 import React from "react";
 import { Link } from "wouter";
 import { Instagram, Facebook, MapPin, Phone, Mail } from "lucide-react";
-import logoImg from "@assets/image_1784656770555.webp";
+import logoImg from "@assets/fitness-temple-logo.webp";
 
 export function Footer() {
   return (

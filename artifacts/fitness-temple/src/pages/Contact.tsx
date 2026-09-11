@@ -21,15 +21,20 @@ type ContactFormValues = z.infer<typeof contactSchema>;
 
 export default function Contact() {
   useSEO({
-    title: "Contact Us - Location, Phone & Hours | Fitness Temple Gym Pundri",
-    description: "Contact Fitness Temple Gym in Pundri, Haryana. Phone: 7206060744. Address: Pundri, Haryana. Open Mon-Sat 5AM-10PM. Join our fitness community today!",
+    title: "Contact Fitness Temple Gym - Phone & Location | Pundri",
+    description: "Contact Fitness Temple Gym Pundri: 7206060744. Near Bus Stand, Pundri, Haryana. Open Mon-Sat 5AM-10PM. Send us a message or visit today!",
     keywords: "contact gym Pundri, gym phone number, gym location Pundri, fitness temple address, gym hours Pundri, gym contact Haryana",
     canonical: "https://fitnesstemple.in/contact",
-    ogTitle: "Contact Fitness Temple Gym - Location, Phone & Hours",
-    ogDescription: "Contact Fitness Temple Gym in Pundri. Phone: 7206060744. Open Mon-Sat 5AM-10PM. Join our fitness community today!",
+    ogTitle: "Contact Fitness Temple Gym - Phone & Location | Pundri",
+    ogDescription: "Contact Fitness Temple Gym Pundri. Phone: 7206060744. Open Mon-Sat 5AM-10PM. Join our fitness community today!",
     breadcrumbs: [
       { name: "Home", path: "/" },
       { name: "Contact", path: "/contact" },
+    ],
+    faqItems: [
+      { question: "Where is Fitness Temple Gym located?", answer: "Fitness Temple is located near the Bus Stand, Main Market, Pundri, Haryana 136026, India." },
+      { question: "What are the gym opening hours?", answer: "Fitness Temple is open Monday to Saturday from 5:00 AM to 10:00 PM. It is closed on Sundays." },
+      { question: "How do I contact Fitness Temple Gym?", answer: "Call 7206060744, email krrishai0916@gmail.com, or use the contact form on our website at fitnesstemple.in/contact." },
     ],
   });
 
@@ -86,9 +91,9 @@ export default function Contact() {
             <Reveal direction="right">
               <div className="space-y-12">
                 <div>
-                  <h3 className="font-heading text-3xl font-bold uppercase text-white mb-6 border-b border-white/10 pb-4">
+                  <h2 className="font-heading text-3xl font-bold uppercase text-white mb-6 border-b border-white/10 pb-4">
                     Contact Details
-                  </h3>
+                  </h2>
                   <address className="not-italic space-y-6">
                     <div className="flex items-start gap-4">
                       <div className="w-12 h-12 bg-primary/10 flex items-center justify-center shrink-0 border border-primary/20">
@@ -123,9 +128,9 @@ export default function Contact() {
                 </div>
 
                 <div>
-                  <h3 className="font-heading text-3xl font-bold uppercase text-white mb-6 border-b border-white/10 pb-4">
+                  <h2 className="font-heading text-3xl font-bold uppercase text-white mb-6 border-b border-white/10 pb-4">
                     Gym Hours
-                  </h3>
+                  </h2>
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-white/5 flex items-center justify-center shrink-0 border border-white/10">
                       <Clock className="w-6 h-6 text-white" />
@@ -148,45 +153,53 @@ export default function Contact() {
             {/* Form */}
             <Reveal direction="left">
               <div className="bg-[#111] p-8 md:p-10 border border-white/5">
-                <h3 className="font-heading text-3xl font-bold uppercase text-white mb-8">
+                <h2 className="font-heading text-3xl font-bold uppercase text-white mb-8">
                   Send a Message
-                </h3>
+                </h2>
                 
                 <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
                   <div>
-                    <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-heading">Your Name</label>
+                    <label htmlFor="contact-name" className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-heading">Your Name</label>
                     <input 
+                      id="contact-name"
                       {...register("name")}
                       className="w-full bg-[#0a0a0a] border border-white/10 px-4 py-3 text-white focus:border-primary focus:outline-none transition-colors"
                       placeholder="John Doe"
+                      autoComplete="name"
                     />
-                    {errors.name && <span className="text-destructive text-sm mt-1 block">{errors.name.message}</span>}
+                    {errors.name && <span className="text-destructive text-sm mt-1 block" role="alert">{errors.name.message}</span>}
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-heading">Phone Number</label>
+                    <label htmlFor="contact-phone" className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-heading">Phone Number</label>
                     <input 
+                      id="contact-phone"
                       {...register("phone")}
+                      type="tel"
                       className="w-full bg-[#0a0a0a] border border-white/10 px-4 py-3 text-white focus:border-primary focus:outline-none transition-colors"
                       placeholder="7206060744"
+                      autoComplete="tel"
                     />
-                    {errors.phone && <span className="text-destructive text-sm mt-1 block">{errors.phone.message}</span>}
+                    {errors.phone && <span className="text-destructive text-sm mt-1 block" role="alert">{errors.phone.message}</span>}
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-heading">Email Address</label>
+                    <label htmlFor="contact-email" className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-heading">Email Address</label>
                     <input
+                      id="contact-email"
                       type="email"
                       {...register("email")}
                       className="w-full bg-[#0a0a0a] border border-white/10 px-4 py-3 text-white focus:border-primary focus:outline-none transition-colors"
                       placeholder="you@example.com"
+                      autoComplete="email"
                     />
-                    {errors.email && <span className="text-destructive text-sm mt-1 block">{errors.email.message}</span>}
+                    {errors.email && <span className="text-destructive text-sm mt-1 block" role="alert">{errors.email.message}</span>}
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-heading">I'm interested in</label>
+                    <label htmlFor="contact-interest" className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-heading">I'm interested in</label>
                     <select 
+                      id="contact-interest"
                       {...register("interest")}
                       className="w-full bg-[#0a0a0a] border border-white/10 px-4 py-3 text-white focus:border-primary focus:outline-none transition-colors appearance-none"
                     >
@@ -194,14 +207,15 @@ export default function Contact() {
                       <option value="membership">General Membership</option>
                       <option value="pt">Personal Training</option>
                       <option value="crossfit">CrossFit</option>
-                      <option value="zumba">Zumba & Dance</option>
+                      <option value="zumba">Zumba &amp; Dance</option>
                     </select>
-                    {errors.interest && <span className="text-destructive text-sm mt-1 block">{errors.interest.message}</span>}
+                    {errors.interest && <span className="text-destructive text-sm mt-1 block" role="alert">{errors.interest.message}</span>}
                   </div>
 
                   <div>
-                    <label className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-heading">Message (Optional)</label>
+                    <label htmlFor="contact-message" className="block text-xs uppercase tracking-widest text-gray-500 mb-2 font-heading">Message (Optional)</label>
                     <textarea 
+                      id="contact-message"
                       {...register("message")}
                       rows={4}
                       className="w-full bg-[#0a0a0a] border border-white/10 px-4 py-3 text-white focus:border-primary focus:outline-none transition-colors resize-none"
@@ -239,6 +253,7 @@ export default function Contact() {
           allowFullScreen={false} 
           loading="lazy" 
           referrerPolicy="no-referrer-when-downgrade"
+          title="Map showing Fitness Temple Gym location in Pundri, Haryana"
         />
       </section>
     </div>

@@ -53,15 +53,20 @@ const plans = [
 
 export default function Membership() {
   useSEO({
-    title: "Gym Membership Plans & Pricing - ₹1,500/month | Fitness Temple Pundri",
-    description: "Affordable gym membership plans in Pundri. Monthly ₹1,500, Quarterly ₹4,000, Annual ₹12,000. No hidden fees. Personal training available. Join Fitness Temple today!",
+    title: "Gym Membership Plans & Pricing | Fitness Temple Pundri",
+    description: "Affordable gym memberships in Pundri: Monthly ₹1,500, Quarterly ₹4,000, Annual ₹12,000. No hidden fees. Personal training available. Join today!",
     keywords: "gym membership Pundri, gym price Pundri, monthly gym plan Haryana, quarterly gym membership, annual gym pass, fitness temple membership, gym cost Pundri",
     canonical: "https://fitnesstemple.in/membership",
-    ogTitle: "Gym Membership Plans - ₹1,500/month | Fitness Temple Pundri",
-    ogDescription: "Affordable gym membership plans in Pundri. Monthly ₹1,500, Quarterly ₹4,000, Annual ₹12,000. No hidden fees. Join Fitness Temple today!",
+    ogTitle: "Gym Membership Plans & Pricing | Fitness Temple Pundri",
+    ogDescription: "Affordable gym memberships: Monthly ₹1,500, Quarterly ₹4,000, Annual ₹12,000. No hidden fees. Join Fitness Temple Pundri today!",
     breadcrumbs: [
       { name: "Home", path: "/" },
       { name: "Membership", path: "/membership" },
+    ],
+    faqItems: [
+      { question: "How much does a gym membership cost at Fitness Temple?", answer: "Monthly membership is ₹1,500, quarterly is ₹4,000 (save ₹500), and annual is ₹12,000 (save ₹6,000 plus free T-shirt, guest passes and diet plan)." },
+      { question: "What is included in the annual gym membership?", answer: "The annual membership (₹12,000) includes unrestricted gym access, advanced diet & nutrition plan, priority equipment usage, 2 guest passes per month, and a free Fitness Temple T-shirt." },
+      { question: "Does Fitness Temple offer personal training?", answer: "Yes, personal training with head trainer Vikas Saini is available as an add-on to any membership plan. Contact the gym for personalized pricing." },
     ],
   });
 
@@ -93,7 +98,7 @@ export default function Membership() {
                 )}
 
                 <div className="mb-8">
-                  <h2 className="font-heading text-3xl font-bold text-white mb-2 uppercase">{plan.name}</h2>
+                  <h3 className="font-heading text-3xl font-bold text-white mb-2 uppercase">{plan.name}</h3>
                   <p className="text-gray-400 text-sm min-h-[40px]">{plan.description}</p>
                 </div>
 
@@ -133,7 +138,7 @@ export default function Membership() {
                 </div>
                 <div>
                   <h2 className="font-heading text-3xl font-bold uppercase text-white mb-2">Personal Training</h2>
-                  <p className="text-gray-400">Want faster results? Add 1-on-1 coaching with Vikas Saini.</p>
+                  <p className="text-gray-400">Want faster results? Add 1-on-1 <Link href="/programs" className="text-primary hover:text-white transition-colors underline underline-offset-4">coaching</Link> with Vikas Saini.</p>
                 </div>
               </div>
               <Link href="/contact" className="shrink-0 px-8 py-3 border border-white text-white font-heading uppercase tracking-widest hover:bg-white hover:text-black transition-colors">

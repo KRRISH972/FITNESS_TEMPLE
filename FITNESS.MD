@@ -263,3 +263,22 @@ pnpm --filter @workspace/db run push                # push Drizzle schema (dev o
 - **Files touched:** `index.html`, `src/hooks/useSEO.ts`, `src/pages/{Home,Programs,About,Membership,Contact,not-found}.tsx`, `src/pages/Gallery.tsx`, `src/components/layout/Footer.tsx`, `public/robots.txt`, `public/sitemap.xml`, `FITNESS.MD`.
 - **Verified:** `pnpm --filter @workspace/fitness-temple run typecheck` ✅ and `run build` ✅ (built in ~28s).
 - **Gotcha:** SPA is client-rendered — per-page title/meta only visible to JS-capable crawlers (Google renders JS, so OK). SSR/prerender would be the next-level improvement.
+
+### Session 007 — 2026-09-11
+- **Done (professional-grade SEO overhaul — 14-point audit):**
+  1. **Titles** — All page titles tightened to 50–60 chars. Format: `Primary Keyword | Brand | Location`. Home: "Fitness Temple - Best Gym in Pundri, Haryana" (49 chars).
+  2. **Meta descriptions** — All rewritten to 148–157 chars with target keyword + CTA. Home: "Pundri's #1 gym for strength training, CrossFit, Zumba & personal training..." (152 chars).
+  3. **Heading hierarchy** — Fixed: Membership plan titles `h2→h3` (under h1); Contact "Contact Details" + "Gym Hours" + "Send a Message" `h3→h2` (direct children of h1). All pages now: exactly ONE h1, h2s for sections, h3s for sub-items.
+  4. **Image optimization** — All 10 generic image files renamed from UUIDs/screenshots to descriptive slugs (e.g. `eb71bb4d-...webp` → `strength-training-equipment-fitline.webp`). Imports updated across all 6 files.
+  5. **URL structure** — Already clean lowercase hyphenated routes. No changes needed.
+  6. **Internal linking** — Added strategic cross-page links: Home "programs" → /programs; Home CTA now dual-button (Join + Contact); Membership PT "coaching" → /programs; About "gym" → /programs; Gallery "View membership plans" → /membership.
+  7. **Canonical tags** — Verified consistent `https://fitnesstemple.in/[page]` via `useSEO` on every page.
+  8. **Structured data** — (a) `useSEO` hook enhanced with `faqItems` + `reviews` arrays → per-page JSON-LD FAQ + AggregateRating/Review. (b) index.html HealthClub: `slogan`, `areaServed`, `makesOffer` (replaced deprecated `hasOfferCatalog`). (c) Global FAQPage removed → now page-specific per page.
+  9. **Sitemap.xml** — Updated `lastmod` to 2026-09-11.
+  10. **Robots.txt** — Cleaned up, `Disallow: /api/` + `/__mockup`, `Sitemap:` ref.
+  11. **OG/Twitter** — Added `og:image:type`, `og:locale:alternate` (hi_IN), better `twitter:image:alt`. Index.html title/description tightened to match Home page.
+  12. **Performance** — Removed unused `Inter` font from index.html. Added `preload` for `og-image.png`. Verified: gzip 24.7KB Home JS, 134KB CSS.
+  13. **Mobile** — Confirmed responsive via Tailwind breakpoints + `prefers-reduced-motion` + safe-area insets.
+  14. **Accessibility** — (a) Contact form: all inputs now have `id` + matching `<label htmlFor>`, `type="tel"`, `type="email"`, `autoComplete`. (b) Error messages use `role="alert"`. (c) Skip-to-content link in App.tsx. (d) Google Maps iframe has `title`.
+- **Files touched (16):** `src/hooks/useSEO.ts`, `index.html`, `public/robots.txt`, `public/sitemap.xml`, `src/App.tsx`, `src/pages/{Home,Programs,About,Gallery,Membership,Contact}.tsx`, `src/components/layout/{Navbar,Footer}.tsx`, plus 10 renamed image files in `attached_assets/`.
+- **Verified:** `pnpm --filter @workspace/fitness-temple run typecheck` ✅ + `run build` ✅ (31s).

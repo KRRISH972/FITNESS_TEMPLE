@@ -40,8 +40,11 @@ const queryClient = new QueryClient();
 function Layout({ children }: { children: React.ReactNode }) {
   return (
     <div className="flex flex-col min-h-screen bg-[#0a0a0a] text-white">
+      <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:top-4 focus:left-4 focus:z-[100] focus:bg-primary focus:text-black focus:px-4 focus:py-2 focus:font-heading focus:uppercase focus:tracking-widest">
+        Skip to main content
+      </a>
       <Navbar />
-      <main className="flex-grow">
+      <main id="main-content" className="flex-grow">
         {children}
       </main>
       <Footer />

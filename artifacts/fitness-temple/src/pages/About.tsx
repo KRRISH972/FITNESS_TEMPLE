@@ -5,21 +5,25 @@ import { CountUp } from "@/components/ui/CountUp";
 import { Link } from "wouter";
 import { useSEO } from "@/hooks/useSEO";
 
-import trainerHero from "@assets/Screenshot_20260721-112303_Instagram~2_1784655440204.webp";
-import trainerFlex from "@assets/Screenshot_20260721-111941_Instagram_1784655465460.webp";
-import trainerTank from "@assets/Screenshot_20260721-111914_Instagram_1784655475849.webp";
+import trainerHero from "@assets/trainer-vikas-saini-hero.webp";
+import trainerFlex from "@assets/trainer-vikas-saini-flexing.webp";
+import trainerTank from "@assets/trainer-vikas-saini-tank-top.webp";
 
 export default function About() {
   useSEO({
-    title: "About Vikas Saini - Head Trainer & Owner | Fitness Temple Gym Pundri",
-    description: "Meet Vikas Saini, head trainer and owner of Fitness Temple Gym in Pundri. 10+ years of professional fitness experience. 500+ successful transformations. His philosophy: 'Sweat is just fat crying.'",
+    title: "About Vikas Saini - Head Trainer | Fitness Temple Pundri",
+    description: "Meet Vikas Saini, head trainer at Fitness Temple Gym Pundri. 10+ years experience, 500+ transformations. His philosophy: Sweat is just fat crying.",
     keywords: "Vikas Saini trainer, gym owner Pundri, personal trainer Haryana, fitness coach Pundri, gym trainer experience, best trainer Haryana",
     canonical: "https://fitnesstemple.in/about",
-    ogTitle: "About Vikas Saini - Head Trainer | Fitness Temple Gym",
-    ogDescription: "Meet Vikas Saini, head trainer and owner of Fitness Temple Gym in Pundri. 10+ years of professional fitness experience. 500+ successful transformations.",
+    ogTitle: "About Vikas Saini - Head Trainer | Fitness Temple Pundri",
+    ogDescription: "Meet Vikas Saini, head trainer at Fitness Temple Gym Pundri. 10+ years experience. 500+ successful transformations.",
     breadcrumbs: [
       { name: "Home", path: "/" },
       { name: "About", path: "/about" },
+    ],
+    faqItems: [
+      { question: "Who is the owner and head trainer of Fitness Temple?", answer: "Vikas Saini is the founder, owner, and head trainer of Fitness Temple Gym in Pundri, Haryana. He has over 10 years of professional fitness experience and has guided 500+ successful body transformations." },
+      { question: "What is Vikas Saini's training philosophy?", answer: "Vikas Saini believes that 'sweat is just fat crying' and that the body achieves what the mind believes. He focuses on discipline, grit, and personalized training for every member." },
     ],
   });
   return (
@@ -68,7 +72,7 @@ export default function About() {
                   Fitness Temple wasn't built on shortcuts. It was built on grit, discipline, and the belief that the body achieves what the mind believes. I started this gym in Pundri because our community needed a place for serious fitness.
                 </p>
                 <p className="text-gray-300 text-lg leading-relaxed">
-                  As the head trainer, my goal isn't just to make you look good—it's to make you undeniably strong, both physically and mentally. When you step into my gym, you leave your excuses at the door.
+                  As the head trainer, my goal isn't just to make you look good—it's to make you undeniably strong, both physically and mentally. When you step into my <Link href="/programs" className="text-primary hover:text-white transition-colors underline underline-offset-4">gym</Link>, you leave your excuses at the door.
                 </p>
 
                 <blockquote className="border-l-4 border-primary pl-6 py-2 my-8 italic text-xl text-white font-serif">

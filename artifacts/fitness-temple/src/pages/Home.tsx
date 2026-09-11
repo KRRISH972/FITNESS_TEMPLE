@@ -6,19 +6,38 @@ import { Reveal, StaggerContainer, StaggerItem, TextReveal } from "@/components/
 import { CountUp } from "@/components/ui/CountUp";
 import { useSEO } from "@/hooks/useSEO";
 
-import heroBg from "@assets/image_1784655757325.webp";
-import interiorImg from "@assets/gym_images/eb71bb4d-dd3a-476a-8e7f-a0fb887be971.webp";
-import muralImg from "@assets/gym_images/8e4d3b55-eef9-44b2-a267-80ab668e9556.webp";
-import trainerImg from "@assets/Screenshot_20260721-111941_Instagram_1784655465460.webp";
+import heroBg from "@assets/gym-hero-exterior-night-pundri.webp";
+import interiorImg from "@assets/gym_images/strength-training-equipment-fitline.webp";
+import muralImg from "@assets/gym_images/you-vs-you-mural-wall.webp";
+import trainerImg from "@assets/trainer-vikas-saini-flexing.webp";
 
 export default function Home() {
   useSEO({
-    title: "Fitness Temple - Best Gym in Pundri, Haryana | Strength Training, CrossFit & Personal Training",
-    description: "Fitness Temple is Pundri's #1 premium gym offering strength training, CrossFit, Zumba, cardio & personal training. Expert coach Vikas Saini with 10+ years experience. Join 500+ happy members!",
+    title: "Fitness Temple - Best Gym in Pundri, Haryana",
+    description: "Pundri's #1 gym for strength training, CrossFit, Zumba & personal training. Expert coach Vikas Saini. 500+ happy members. Join Fitness Temple today!",
     keywords: "gym in Pundri, fitness center Pundri, CrossFit Pundri, strength training Haryana, personal trainer Pundri, Vikas Saini gym, best gym Haryana, Zumba classes Pundri, weight loss Pundri",
     canonical: "https://fitnesstemple.in/",
     ogTitle: "Fitness Temple - Best Gym in Pundri, Haryana",
-    ogDescription: "Pundri's #1 premium gym. Strength training, CrossFit, Zumba & personal training with expert coach Vikas Saini. Join 500+ happy members today!"
+    ogDescription: "Pundri's #1 gym. Strength training, CrossFit, Zumba & personal training with expert coach Vikas Saini. Join 500+ happy members today!",
+    breadcrumbs: [
+      { name: "Home", path: "/" },
+    ],
+    faqItems: [
+      { question: "Where is Fitness Temple Gym located?", answer: "Fitness Temple is located near the Bus Stand, Main Market, Pundri, Haryana 136026, India." },
+      { question: "What are Fitness Temple's opening hours?", answer: "Fitness Temple is open Monday to Saturday from 5:00 AM to 10:00 PM. It is closed on Sundays." },
+      { question: "What is the gym membership price at Fitness Temple?", answer: "Monthly membership is ₹1,500, quarterly is ₹4,000, and annual is ₹12,000 which includes a free T-shirt, guest passes and a diet plan." },
+      { question: "What programs does Fitness Temple Pundri offer?", answer: "Fitness Temple offers Strength Training, CrossFit / Functional Training, Zumba & Dance classes, Cardio and Personal Training with head trainer Vikas Saini." },
+      { question: "How do I contact Fitness Temple Gym?", answer: "Call 7206060744, email krrishai0916@gmail.com, or use the contact form on our website at fitnesstemple.in/contact." },
+    ],
+    reviews: [
+      { author: "Rahul Sharma", rating: 5, reviewBody: "Fitness Temple ne meri life badal di. 8 mahine mein 20kg lose kiya. Vikas sir ki training ekdum personal aur effective hai. Pundri ka best gym!" },
+      { author: "Priya Rani", rating: 5, reviewBody: "Best gym in Pundri! Equipment top class hai aur Vikas sir hamesha motivate karte hain. Zumba classes bahut entertaining hain. Highly recommend!" },
+      { author: "Amit Saroha", rating: 5, reviewBody: "Pehle bohot gyms try kiye but Fitness Temple ka atmosphere alag hi hai. Dark vibe, heavy music, serious log — exactly what I needed. 5 stars!" },
+      { author: "Deepak Kumar", rating: 5, reviewBody: "CrossFit classes are intense and addictive. Vikas sir personally checks your form every session. Best investment I've made in myself." },
+      { author: "Sunita Devi", rating: 5, reviewBody: "Sirf 4 mahine mein mera weight 15kg kam hua. Staff bahut cooperative hai aur environment bohot clean hai. Bilkul paisa vasool!" },
+      { author: "Vishal Nain", rating: 5, reviewBody: "Strength training equipment ekdum premium hai. Fitline machines ka koi jawab nahi. Vikas sir ka diet plan bhi bahut helpful raha mujhe." },
+      { author: "Rohit Yadav", rating: 5, reviewBody: "One year completed at Fitness Temple. 15kg muscle gained, confidence doubled. This gym is a lifestyle, not just a workout place." },
+    ],
   });
   return (
     <div className="w-full flex flex-col min-h-[100dvh]">
@@ -181,7 +200,7 @@ export default function Home() {
               Our <span className="text-primary">Disciplines</span>
             </h2>
             <p className="text-center text-gray-400 max-w-2xl mx-auto mt-4 text-lg">
-              Choose your weapon. From heavy lifting to high-intensity cardio, we have the programs to forge your physique.
+              Choose your weapon. From heavy lifting to high-intensity cardio, we have the <Link href="/programs" className="text-primary hover:text-white transition-colors underline underline-offset-4">programs</Link> to forge your physique.
             </p>
           </Reveal>
 
@@ -385,11 +404,16 @@ export default function Home() {
               Ready to <span className="text-primary">Commit?</span>
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto mb-10">
-              Stop making excuses. Start making progress. Join Fitness Temple today and become part of the strongest community in Pundri.
+              Stop making excuses. Start making progress. <Link href="/membership" className="text-primary hover:text-white transition-colors underline underline-offset-4">Join Fitness Temple</Link> today and become part of the strongest community in Pundri.
             </p>
-            <Link href="/membership" className="inline-block px-12 py-5 font-heading text-2xl tracking-widest uppercase text-black bg-primary transition-all hover:scale-105 shadow-[0_0_30px_rgba(229,57,53,0.5)]">
-              Start Your Journey
-            </Link>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+              <Link href="/membership" className="inline-block px-12 py-5 font-heading text-2xl tracking-widest uppercase text-black bg-primary transition-all hover:scale-105 shadow-[0_0_30px_rgba(229,57,53,0.5)]">
+                Start Your Journey
+              </Link>
+              <Link href="/contact" className="inline-block px-12 py-5 font-heading text-2xl tracking-widest uppercase text-white border-2 border-white/20 hover:border-primary hover:text-primary transition-all">
+                Contact Us
+              </Link>
+            </div>
           </Reveal>
         </div>
       </section>

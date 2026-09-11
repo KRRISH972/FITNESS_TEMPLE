@@ -1,16 +1,17 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { Link } from "wouter";
 import { Reveal } from "@/components/ui/Reveal";
 import { X, ZoomIn, ChevronLeft, ChevronRight } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 
-import ext1 from "@assets/image_1784655757325.webp";
-import ext2 from "@assets/gym_images/2cc21956-08c5-4c98-9a86-81041692833b.webp";
-import int1 from "@assets/gym_images/eb71bb4d-dd3a-476a-8e7f-a0fb887be971.webp";
-import int2 from "@assets/gym_images/d6b27e32-9b1e-43bb-afb4-64d25134dc64.webp";
-import int3 from "@assets/gym_images/8e4d3b55-eef9-44b2-a267-80ab668e9556.webp";
-import mem1 from "@assets/Screenshot_20260721-112033_Instagram_1784655451111.webp";
-import tr1 from "@assets/Screenshot_20260721-112303_Instagram~2_1784655440204.webp";
+import ext1 from "@assets/gym-hero-exterior-night-pundri.webp";
+import ext2 from "@assets/gym_images/gym-exterior-modern-front.webp";
+import int1 from "@assets/gym_images/strength-training-equipment-fitline.webp";
+import int2 from "@assets/gym_images/dark-aesthetic-training-floor.webp";
+import int3 from "@assets/gym_images/you-vs-you-mural-wall.webp";
+import mem1 from "@assets/gym-member-transformation.webp";
+import tr1 from "@assets/trainer-vikas-saini-hero.webp";
 
 const images = [
   { src: ext1, alt: "Fitness Temple Gym Pundri - Premium Fitness Center Exterior at Night", span: "md:col-span-2 md:row-span-2" },
@@ -24,12 +25,12 @@ const images = [
 
 export default function Gallery() {
   useSEO({
-    title: "Gym Gallery - Interior & Equipment Photos | Fitness Temple Pundri",
-    description: "Take a virtual tour of Fitness Temple Gym in Pundri. See our premium Fitline equipment, dark aesthetic interior, and elite training atmosphere. 500+ sq ft of fitness space.",
+    title: "Gym Gallery - Photos & Interior | Fitness Temple Pundri",
+    description: "Take a virtual tour of Fitness Temple Gym Pundri. See our premium Fitline equipment, dark aesthetic interior, and elite training atmosphere.",
     keywords: "gym interior Pundri, fitness center photos, gym equipment images, Fitline machines, gym gallery Haryana, fitness temple photos",
     canonical: "https://fitnesstemple.in/gallery",
-    ogTitle: "Gym Gallery - Interior & Equipment | Fitness Temple Pundri",
-    ogDescription: "Take a virtual tour of Fitness Temple Gym. See our premium Fitline equipment, dark aesthetic interior, and elite training atmosphere.",
+    ogTitle: "Gym Gallery - Photos & Interior | Fitness Temple Pundri",
+    ogDescription: "Virtual tour of Fitness Temple Gym. Premium Fitline equipment, dark aesthetic interior, and elite training atmosphere in Pundri.",
     breadcrumbs: [
       { name: "Home", path: "/" },
       { name: "Gallery", path: "/gallery" },
@@ -57,7 +58,7 @@ export default function Gallery() {
             The <span className="text-primary">Gallery</span>
           </h1>
           <p className="text-lg text-gray-400 max-w-xl mx-auto">
-            Take a look inside the Temple. Professional equipment, elite atmosphere.
+            Take a look inside the Temple. Professional equipment, elite atmosphere. Ready to experience it live? <Link href="/membership" className="text-primary hover:text-white transition-colors underline underline-offset-4">View membership plans</Link>.
           </p>
         </Reveal>
       </section>

@@ -5,10 +5,10 @@ import { Reveal, StaggerContainer, StaggerItem } from "@/components/ui/Reveal";
 import { Check, Clock, ArrowRight } from "lucide-react";
 import { useSEO } from "@/hooks/useSEO";
 
-import strengthImg from "@assets/gym_images/eb71bb4d-dd3a-476a-8e7f-a0fb887be971.webp";
+import strengthImg from "@assets/gym_images/strength-training-equipment-fitline.webp";
 import crossfitImg from "@assets/generated_images/fitness-temple-crossfit.webp";
 import zumbaImg from "@assets/generated_images/fitness-temple-dance.webp";
-import headerImg from "@assets/gym_images/8e4d3b55-eef9-44b2-a267-80ab668e9556.webp";
+import headerImg from "@assets/gym_images/you-vs-you-mural-wall.webp";
 
 const programs = [
   {
@@ -60,15 +60,20 @@ const programs = [
 
 export default function Programs() {
   useSEO({
-    title: "Gym Programs in Pundri - Strength Training, CrossFit, Zumba & Personal Training | Fitness Temple",
-    description: "Explore our gym programs: Strength Training, CrossFit, Zumba & Dance, Cardio Focus, and Personal Training. Premium Fitline equipment in Pundri, Haryana. Join Fitness Temple today!",
+    title: "Gym Programs - Strength, CrossFit & Zumba | Fitness Temple",
+    description: "Explore gym programs at Fitness Temple Pundri: Strength Training, CrossFit, Zumba & Dance, Cardio, and Personal Training. Premium Fitline equipment. Join now!",
     keywords: "strength training Pundri, CrossFit classes Pundri, Zumba classes Haryana, gym programs Pundri, personal training Pundri, cardio gym Haryana, Fitline equipment",
     canonical: "https://fitnesstemple.in/programs",
-    ogTitle: "Gym Programs - Strength Training, CrossFit, Zumba | Fitness Temple",
-    ogDescription: "Explore our gym programs: Strength Training, CrossFit, Zumba & Dance, Cardio Focus, and Personal Training. Premium equipment in Pundri.",
+    ogTitle: "Gym Programs - Strength, CrossFit & Zumba | Fitness Temple",
+    ogDescription: "Explore gym programs: Strength Training, CrossFit, Zumba & Dance, Cardio, and Personal Training. Premium Fitline equipment in Pundri, Haryana.",
     breadcrumbs: [
       { name: "Home", path: "/" },
       { name: "Programs", path: "/programs" },
+    ],
+    faqItems: [
+      { question: "What gym programs does Fitness Temple Pundri offer?", answer: "Fitness Temple offers Strength Training, CrossFit/Functional Training, Zumba & Dance classes, Cardio Focus, and Personal Training with head trainer Vikas Saini." },
+      { question: "What are the CrossFit class timings at Fitness Temple?", answer: "CrossFit/Functional Training classes run Monday, Wednesday, and Friday from 6PM to 8PM at Fitness Temple Pundri." },
+      { question: "Is there a Zumba class at Fitness Temple Pundri?", answer: "Yes! Zumba & Dance classes are held Tuesday, Thursday, and Saturday from 6PM to 7PM. They are beginner-friendly with a spacious wooden floor studio." },
     ],
   });
 
@@ -208,7 +213,7 @@ export default function Programs() {
       </section>
 
       {/* CTA */}
-      <section className="py-12 md:py-20 bg-primary text-black text-center">
+      <section className="py-12 md:py-20 bg-primary text-black text-center" aria-label="Get started with Fitness Temple">
         <Reveal>
           <h2 className="font-heading text-4xl md:text-6xl font-bold uppercase mb-6">
             Not sure where to start?

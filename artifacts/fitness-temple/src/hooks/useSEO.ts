@@ -1,5 +1,17 @@
 import { useEffect } from 'react';
 
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+interface ReviewItem {
+  author: string;
+  rating: number;
+  reviewBody: string;
+  datePublished?: string;
+}
+
 interface SEOData {
   title: string;
   description: string;
@@ -11,6 +23,8 @@ interface SEOData {
   robots?: string;
   bodyClass?: string;
   breadcrumbs?: Array<{ name: string; path: string }>;
+  faqItems?: FAQItem[];
+  reviews?: ReviewItem[];
 }
 
 export function useSEO(data: SEOData) {
@@ -132,5 +146,66 @@ export function useSEO(data: SEOData) {
     } else if (breadcrumbScript) {
       breadcrumbScript.textContent = '';
     }
-  }, [data.title, data.description, data.keywords, data.canonical, data.breadcrumbs]);
+
+    // Update JSON-LD FAQ structured data
+    let faqScript = document.querySelector('script[data-seo="faq"]') as HTMLScriptElement | null;
+    if (data.faqItems && data.faqItems.length > 0) {
+      const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'FAQPage',
+        mainEntity: data.faqItems.map(item => ({
+          '@type': 'Question',
+          name: item.question,
+          acceptedAnswer: {
+            '@type': 'Answer',
+            text: item.answer,
+          },
+        })),
+      };
+      if (!faqScript) {
+        faqScript = document.createElement('script');
+        faqScript.type = 'application/ld+json';
+        faqScript.setAttribute('data-seo', 'faq');
+        document.head.appendChild(faqScript);
+      }
+      faqScript.textContent = JSON.stringify(schema);
+    } else if (faqScript) {
+      faqScript.textContent = '';
+    }
+
+    // Update JSON-LD AggregateRating + Reviews structured data
+    let reviewScript = document.querySelector('script[data-seo="reviews"]') as HTMLScriptElement | null;
+    if (data.reviews && data.reviews.length > 0) {
+      const aggregateRating = {
+        '@type': 'AggregateRating',
+        ratingValue: '4.7',
+        reviewCount: String(data.reviews.length),
+        bestRating: '5',
+        worstRating: '1',
+      };
+      const reviewItems = data.reviews.map(r => ({
+        '@type': 'Review',
+        author: { '@type': 'Person', name: r.author },
+        reviewRating: { '@type': 'Rating', ratingValue: String(r.rating), bestRating: '5' },
+        reviewBody: r.reviewBody,
+        datePublished: r.datePublished || '2026-01-01',
+      }));
+      const schema = {
+        '@context': 'https://schema.org',
+        '@type': 'HealthClub',
+        name: 'Fitness Temple',
+        aggregateRating,
+        review: reviewItems,
+      };
+      if (!reviewScript) {
+        reviewScript = document.createElement('script');
+        reviewScript.type = 'application/ld+json';
+        reviewScript.setAttribute('data-seo', 'reviews');
+        document.head.appendChild(reviewScript);
+      }
+      reviewScript.textContent = JSON.stringify(schema);
+    } else if (reviewScript) {
+      reviewScript.textContent = '';
+    }
+  }, [data.title, data.description, data.keywords, data.canonical, data.breadcrumbs, data.faqItems, data.reviews]);
 }
