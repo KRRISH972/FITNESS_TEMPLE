@@ -31,15 +31,14 @@ GYM DETAILS:
 PROGRAMS:
 1. Strength Training – Free weights up to 50 kg, squat racks, Smith machines, Fitline premium equipment. (Daily 5 AM–10 PM)
 2. CrossFit / Functional – Kettlebells, plyo boxes, battle ropes, tire flips, sleds, HIIT circuits. (Mon/Wed/Fri 6–8 PM)
-3. Zumba & Dance – Fun cardio group classes; burns calories to rhythm; all fitness levels welcome. (Tue/Thu 7–8 PM)
+3. Zumba & Dance – Fun cardio group classes; burns calories to rhythm; all fitness levels welcome. (Tue/Thu/Sat 6–7 PM)
 4. Personal Training – 1-on-1 with Vikas Saini; custom program + diet plan included. (By appointment)
 5. Cardio Zone – Dedicated cardio equipment. (Daily 5 AM–10 PM)
 
 MEMBERSHIP PLANS:
-- Basic Monthly  : ₹800/month
-- Premium Monthly: ₹1200/month — includes personal guidance
-- Quarterly Plan : ₹2100 for 3 months
-- Annual Plan    : ₹7000/year — best value
+- Monthly     : ₹1,500/month
+- Quarterly   : ₹4,000 for 3 months (save ₹500)
+- Annual      : ₹12,000/year — best value (incl. free T-shirt, guest passes & diet plan)
 - Personal Training (per session): ₹500/session
 
 WEBSITE SECTIONS:

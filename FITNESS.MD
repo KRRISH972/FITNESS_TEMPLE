@@ -145,7 +145,7 @@ Interest options in contact form: `membership`, `pt`, `crossfit`, `zumba`.
 | `SESSION_SECRET`| reserved | already set |
 | `VITE_API_URL`  | frontend (build-time) | Backend base URL. Empty = same-origin (`/api`). Set on Vercel to Render URL (e.g. `https://fitness-temple-api.onrender.com`) |
 
-⚠️ `artifacts/api-server/src/routes/chat.ts` reads the Groq key from `process.env["FITNESS_TEMPLE"]` — NOT `GROQ_API_KEY`. Must be aligned or the env var must be provided on Replit.
+✅ `artifacts/api-server/src/routes/chat.ts` now reads the Groq key from `process.env["GROQ_API_KEY"]` with fallback to `process.env["FITNESS_TEMPLE"]` (fixed Session 008) — both names work.
 
 ---
 
@@ -165,9 +165,9 @@ pnpm --filter @workspace/db run push                # push Drizzle schema (dev o
 
 ## 8. Known TODOs / Gotchas
 
-- [ ] `artifacts/api-server/src/routes/chat.ts` still has **PLACEHOLDER** strings for gym address, membership prices, and class schedule (search file for "PLACEHOLDER"). The Vite dev-middleware copy already has real values filled in.
-- [ ] Membership prices mismatch: website shows ₹1,500/₹4,000/₹12,000 but chatbot placeholder lists ₹800–₹7,000 plans. Needs reconciliation.
-- [ ] Chat Groq env var naming mismatch (`FITNESS_TEMPLE` vs `GROQ_API_KEY`).
+- [x] `artifacts/api-server/src/routes/chat.ts` no longer has PLACEHOLDER strings — real address, membership prices, and class schedule in `/api-server/src/routes/chat.ts` (fixed Session 008). Both api-server and vite dev-middleware copies now aligned.
+- [x] Membership prices mismatch FIXED (Session 008): chatbot now lists ₹1,500/₹4,000/₹12,000 matching the Membership page. Also fixed Zumba timing mismatch (was "Tue/Thu 7–8 PM", now "Tue/Thu/Sat 6–7 PM").
+- [x] Chat Groq env var naming FIXED (Session 008): `chat.ts` reads `process.env["GROQ_API_KEY"] ?? process.env["FITNESS_TEMPLE"]` — both names work.
 - [ ] DB schema (`lib/db/src/schema/index.ts`) is empty — no tables defined yet.
 - [ ] After GitHub re-import on Replit: artifacts must be re-registered via createArtifact.
 - [ ] Brevo sender address must be verified in Brevo account or emails fail silently (503).
@@ -282,3 +282,15 @@ pnpm --filter @workspace/db run push                # push Drizzle schema (dev o
   14. **Accessibility** — (a) Contact form: all inputs now have `id` + matching `<label htmlFor>`, `type="tel"`, `type="email"`, `autoComplete`. (b) Error messages use `role="alert"`. (c) Skip-to-content link in App.tsx. (d) Google Maps iframe has `title`.
 - **Files touched (16):** `src/hooks/useSEO.ts`, `index.html`, `public/robots.txt`, `public/sitemap.xml`, `src/App.tsx`, `src/pages/{Home,Programs,About,Gallery,Membership,Contact}.tsx`, `src/components/layout/{Navbar,Footer}.tsx`, plus 10 renamed image files in `attached_assets/`.
 - **Verified:** `pnpm --filter @workspace/fitness-temple run typecheck` ✅ + `run build` ✅ (31s).
+
+### Session 008 — 2026-09-12
+- **Done (site health audit + 2 bug fixes):**
+  - **Map overlay fix on /contact** — Google Maps embed was invisible because of an aggressive CSS `filter: invert(90%) hue-rotate(180deg)` on the `<iframe>`. Removed the filter and cleaned up the embed URL in `src/pages/Contact.tsx`. Map now renders normally (light theme). Committed + pushed as `844f073`.
+  - **Chatbot pricing/schedule mismatch fixed** — The AI chat replied with OLD placeholder pricing (₹800/₹1,200/₹2,100/₹7,000) that contradicted the Membership page (₹1,500/₹4,000/₹12,000), and Zumba timing was "Tue/Thu 7–8 PM" vs website "Tue/Thu/Sat 6–7 PM". Aligned `MEMBERSHIP_PLANS` + `CLASS_SCHEDULE` in BOTH:
+    - `artifacts/api-server/src/routes/chat.ts`
+    - `artifacts/fitness-temple/vite.config.ts` (dev middleware)
+  - **Env var naming confirmed fixed** — `chat.ts` reads `GROQ_API_KEY ?? FITNESS_TEMPLE`; updated stale ⚠️ note in section 6 and checked off 3 TODOs in section 8 (no PLACEHOLDERs, price alignment, env naming).
+  - **Site health verification** — `pnpm --filter @workspace/fitness-temple run build` ✅ (50s); dev server boots on :5173 and returns HTTP 200 with correct `<title>`; no leftover old-image references; no TODO/FIXME/PLACEHOLDER in frontend src.
+- **Files touched:** `src/pages/Contact.tsx`, `artifacts/api-server/src/routes/chat.ts`, `artifacts/fitness-temple/vite.config.ts`, `FITNESS.MD`.
+- **Verified:** typecheck ✅ + build ✅.
+- **Next steps:** re-deploy happened automatically on push (Vercel + Render rebuild). Confirm map + chat on live site.

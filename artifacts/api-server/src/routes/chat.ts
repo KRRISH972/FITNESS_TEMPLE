@@ -6,16 +6,15 @@ const router: IRouter = Router();
 const GYM_ADDRESS = "Near Bus Stand, Main Market, Pundri, Haryana 136026";
 
 const MEMBERSHIP_PLANS = `\
-- Basic Monthly  : ₹800/month
-- Premium Monthly: ₹1200/month — includes personal guidance
-- Quarterly Plan : ₹2100 for 3 months
-- Annual Plan    : ₹7000/year — best value
+- Monthly   : ₹1,500/month
+- Quarterly : ₹4,000 for 3 months (save ₹500)
+- Annual    : ₹12,000/year — best value (incl. free T-shirt, guest passes & diet plan)
 - Personal Training (per session): ₹500/session`;
 
 const CLASS_SCHEDULE = `\
-- Strength Training (open gym) : Everyday 5:00 AM – 10:00 PM
+- Strength Training (open gym) : Every day 5:00 AM – 10:00 PM
 - CrossFit / Functional        : Mon, Wed, Fri — 6:00 PM – 8:00 PM
-- Zumba & Dance                : Tue & Thu 7:00 PM – 8:00 PM
+- Zumba & Dance                : Tue, Thu, Sat — 6:00 PM – 7:00 PM
 - Personal Training            : By appointment, call 7206060744`;
 
 const SYSTEM_PROMPT = `You are the friendly AI assistant for Fitness Temple The Gym, Pundri, Haryana, India.
