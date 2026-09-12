@@ -294,3 +294,15 @@ pnpm --filter @workspace/db run push                # push Drizzle schema (dev o
 - **Files touched:** `src/pages/Contact.tsx`, `artifacts/api-server/src/routes/chat.ts`, `artifacts/fitness-temple/vite.config.ts`, `FITNESS.MD`.
 - **Verified:** typecheck ✅ + build ✅.
 - **Next steps:** re-deploy happened automatically on push (Vercel + Render rebuild). Confirm map + chat on live site.
+
+### Session 009 — 2026-09-12
+- **Done (domain/sitemap verification + go-live checklist):**
+  - **Custom domain NOT live yet** — `https://fitnesstemple.in` does NOT resolve (DNS lookup fails). The site is currently served from Vercel's default URL **`https://fitness-temple-eight.vercel.app`** (verified: `/sitemap.xml` → 200).
+  - **Critical SEO implication:** every canonical URL, sitemap `<loc>`, robots `Sitemap:`, og:url, and JSON-LD `url` points to `https://fitnesstemple.in/` — which Google cannot reach until the custom domain is connected. Search Console submission of `fitness-temple-eight.vercel.app/sitemap.xml` would show the sitemap URLs pointing to a non-resolving domain.
+  - **To fix (user-side), in priority order:**
+    1. Connect `fitnesstemple.in` in Vercel → Project → Settings → Domains, and point the DNS A/AAAA/CNAME records per Vercel's instructions.
+    2. After DNS propagates, verify `https://fitnesstemple.in` loads and `/sitemap.xml` → 200.
+    3. Then submit `https://fitnesstemple.in/sitemap.xml` in Google Search Console (also the vercel.app URL if needed for coverage).
+  - **Alternative:** if the custom domain is NOT going to be used, update all canonical/sitemap/robots/JSON-LD URLs from `fitnesstemple.in` → `fitness-temple-eight.vercel.app` (files: `src/hooks/useSEO.ts` canonical values per page, `index.html`, `public/robots.txt`, `public/sitemap.xml`).
+- **Files touched:** `FITNESS.MD` only (this log).
+- **Next steps (user-side):** connect the custom domain on Vercel, OR tell this agent to switch all URLs to the Vercel default domain.
