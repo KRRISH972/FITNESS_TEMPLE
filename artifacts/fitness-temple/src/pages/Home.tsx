@@ -29,15 +29,6 @@ export default function Home() {
       { question: "What programs does Fitness Temple Pundri offer?", answer: "Fitness Temple offers Strength Training, CrossFit / Functional Training, Zumba & Dance classes, Cardio and Personal Training with head trainer Vikas Saini." },
       { question: "How do I contact Fitness Temple Gym?", answer: "Call 7206060744, email krrishai0916@gmail.com, or use the contact form on our website at fitnesstemple.in/contact." },
     ],
-    reviews: [
-      { author: "Rahul Sharma", rating: 5, reviewBody: "Fitness Temple ne meri life badal di. 8 mahine mein 20kg lose kiya. Vikas sir ki training ekdum personal aur effective hai. Pundri ka best gym!" },
-      { author: "Priya Rani", rating: 5, reviewBody: "Best gym in Pundri! Equipment top class hai aur Vikas sir hamesha motivate karte hain. Zumba classes bahut entertaining hain. Highly recommend!" },
-      { author: "Amit Saroha", rating: 5, reviewBody: "Pehle bohot gyms try kiye but Fitness Temple ka atmosphere alag hi hai. Dark vibe, heavy music, serious log — exactly what I needed. 5 stars!" },
-      { author: "Deepak Kumar", rating: 5, reviewBody: "CrossFit classes are intense and addictive. Vikas sir personally checks your form every session. Best investment I've made in myself." },
-      { author: "Sunita Devi", rating: 5, reviewBody: "Sirf 4 mahine mein mera weight 15kg kam hua. Staff bahut cooperative hai aur environment bohot clean hai. Bilkul paisa vasool!" },
-      { author: "Vishal Nain", rating: 5, reviewBody: "Strength training equipment ekdum premium hai. Fitline machines ka koi jawab nahi. Vikas sir ka diet plan bhi bahut helpful raha mujhe." },
-      { author: "Rohit Yadav", rating: 5, reviewBody: "One year completed at Fitness Temple. 15kg muscle gained, confidence doubled. This gym is a lifestyle, not just a workout place." },
-    ],
   });
   return (
     <div className="w-full flex flex-col min-h-[100dvh]">
