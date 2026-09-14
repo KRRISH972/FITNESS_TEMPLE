@@ -306,3 +306,15 @@ pnpm --filter @workspace/db run push                # push Drizzle schema (dev o
   - **Alternative:** if the custom domain is NOT going to be used, update all canonical/sitemap/robots/JSON-LD URLs from `fitnesstemple.in` → `fitness-temple-eight.vercel.app` (files: `src/hooks/useSEO.ts` canonical values per page, `index.html`, `public/robots.txt`, `public/sitemap.xml`).
 - **Files touched:** `FITNESS.MD` only (this log).
 - **Next steps (user-side):** connect the custom domain on Vercel, OR tell this agent to switch all URLs to the Vercel default domain.
+
+### Session 010 — 2026-09-12
+- **Done (SEO cleanup — removed fake reviews + structured-data polish):**
+  - **Fake reviews removed** — dropped the made-up `Review` items (7 fabricated testimonials) and `AggregateRating` (4.7/130) from `index.html` JSON-LD, `src/hooks/useSEO.ts` (removed `reviews` array support), and `src/pages/Home.tsx`. Fabricated review markup violates Google Rich-Results guidelines and risks a spam/manual action — if real Google reviews are available later, use them via the Google Reviews embed/API instead.
+  - **Removed `keywords` meta** from `index.html` (ignored by Google for years, adds no value).
+  - **HealthClub JSON-LD restructured** — `makesOffer` plan list moved into proper `hasOfferCatalog` (OfferCatalog with itemListElement of Offers), and the 4 services (Strength Training, CrossFit, Zumba, Personal Training) are now real `Offer`/`itemOffered` objects under `makesOffer`.
+  - **`og:image`/`twitter:image` now absolute at runtime** — `useSEO.ts` resolves relative paths via `new URL(ogImagePath, window.location.origin)` so OG/Twitter cards always point to an absolute URL (custom-domain safe).
+  - **Added `og:image:alt` + `twitter:image:alt`** (per-page title — Fitness Temple, Pundri).
+  - **Added `<noscript>` fallback** in `index.html` — static `<h1>`, NAP info, tel link + page nav for visitors/crawlers without JS.
+- **Files touched:** `index.html`, `src/hooks/useSEO.ts`, `src/pages/Home.tsx`, `FITNESS.MD`.
+- **Verified:** `pnpm --filter @workspace/fitness-temple run typecheck` ✅ + `run build` ✅.
+- **Next steps:** connect the custom domain on Vercel (Session 009 blocker), then re-verify OG/Twitter cards + structured data via Rich Results Test.
